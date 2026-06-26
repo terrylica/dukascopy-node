@@ -222,7 +222,11 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
 .callout{background:#161b22;border-left:3px solid var(--ac);padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0;color:var(--mut)}
 .warn{border-left-color:#d29922}
 code{background:#21262d;padding:1px 6px;border-radius:5px;font-size:13px}
-pre.recipe{background:#0b0f14;border:1px solid var(--bd);border-radius:8px;padding:16px 18px;overflow-x:auto;font:12.5px/1.55 ui-monospace,Menlo,Consolas,monospace;color:#c9d1d9;white-space:pre-wrap;word-break:break-word}
+.recipe-wrap{position:relative}
+pre.recipe{background:#0b0f14;border:1px solid var(--bd);border-radius:8px;padding:46px 18px 16px;overflow-x:auto;font:12.5px/1.55 ui-monospace,Menlo,Consolas,monospace;color:#c9d1d9;white-space:pre-wrap;word-break:break-word}
+.copy-btn{position:absolute;top:10px;right:10px;display:inline-flex;align-items:center;gap:6px;background:#238636;border:1px solid #2ea043;color:#fff;border-radius:6px;padding:7px 14px;font-size:12.5px;font-weight:700;cursor:pointer;z-index:2;font-family:inherit}
+.copy-btn:hover{background:#2ea043}
+.copy-btn.ok{background:#1f6feb;border-color:#1f6feb}
 .vbadge{display:inline-block;background:#3fb95022;border:1px solid #2ea043;color:#7ee787;border-radius:6px;padding:3px 10px;font-size:12px;font-weight:600;margin-top:8px}
 .dict{font-size:13px}.dict td:first-child{color:#79c0ff;font-family:ui-monospace,Menlo,monospace;white-space:nowrap}
 footer{color:var(--mut);font-size:12px;margin-top:50px;border-top:1px solid var(--bd);padding-top:18px}
@@ -274,11 +278,11 @@ ${process.env.PARTIAL_NOTE ? `<div style="background:#d29922;color:#1c1300;font-
 <h2>Use it with Claude Code <small>two ready-to-paste recipes</small></h2>
 <h3 style="margin-top:8px">1 · Consume the data <small>no setup, no account</small></h3>
 <p class="meta">The dataset ships with a machine-readable <a href="${manifestUrl}">manifest.json</a> indexing every file. Paste this into a Claude Code (or any AI coding-agent) session — it is self-contained and will discover, download, verify and use the data on its own.</p>
-<pre class="recipe">${esc(recipe)}</pre>
+<div class="recipe-wrap"><button class="copy-btn" type="button" onclick="copyRecipe(this)">⧉ Copy prompt</button><pre class="recipe">${esc(recipe)}</pre></div>
 
 <h3 style="margin-top:26px">2 · Reproduce the whole pipeline <small>regenerate everything — e.g. to add fresh data next month</small></h3>
 <div class="callout warn" style="margin-top:8px"><b>⚠ One human step, required.</b> Reproducing from scratch uses Dukascopy's demo platform, and the free <b>demo account must be registered by a person — it cannot be automated</b>. No email confirmation/click-to-verify is needed; your JForex login + password arrive by email ("Your Demo Trading Account Is Ready") within minutes. <a href="${demoUrl}">Register a demo account →</a></div>
-<pre class="recipe">${esc(reproRecipe)}</pre>
+<div class="recipe-wrap"><button class="copy-btn" type="button" onclick="copyRecipe(this)">⧉ Copy prompt</button><pre class="recipe">${esc(reproRecipe)}</pre></div>
 <p class="meta">Full method, all scripts and the release are on GitHub: <a href="${repoUrl}">ai-stocks/ source</a> · <a href="${readmeUrl}">README</a> · <a href="${releaseUrl}">v1 release (data + checksums)</a>.</p>
 
 <div class="callout warn">
@@ -289,7 +293,24 @@ ${process.env.PARTIAL_NOTE ? `<div style="background:#d29922;color:#1c1300;font-
 Source: Dukascopy stock-CFD price feed (freeserv chart API) · Bun/TypeScript pipeline · ${manifest.timeframe}.
 Integrity: every file's SHA-256 is in CHECKSUMS.txt and manifest.json. Method &amp; code: <a href="${repoUrl}">GitHub</a> · <a href="${releaseUrl}">v1 release</a>. ${esc(RANK_META.disclaimer)}
 </footer>
-</div></body></html>`;
+</div>
+<script>
+function copyRecipe(btn){
+  var pre = btn.parentElement.querySelector('pre');
+  var text = pre.innerText;
+  var done = function(){ btn.classList.add('ok'); var o=btn.innerHTML; btn.innerHTML='✓ Copied!'; setTimeout(function(){ btn.classList.remove('ok'); btn.innerHTML=o; }, 1800); };
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(done).catch(function(){ legacy(pre); done(); });
+  } else { legacy(pre); done(); }
+}
+function legacy(pre){
+  var r=document.createRange(); r.selectNodeContents(pre);
+  var s=window.getSelection(); s.removeAllRanges(); s.addRange(r);
+  try{ document.execCommand('copy'); }catch(e){ console.error('copy failed:', e); }
+  s.removeAllRanges();
+}
+</script>
+</body></html>`;
 
 mkdirSync(OUT_DIR, { recursive: true });
 writeFileSync(join(OUT_DIR, "index.html"), html);
