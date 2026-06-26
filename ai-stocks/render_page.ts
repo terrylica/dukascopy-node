@@ -154,6 +154,32 @@ DO THIS:
   2. Download NVDA's merged CSV, load it, and chart mid_close over time.
   3. <replace with your question — e.g. "average bid-ask spread per stock in 2026">`;
 
+const repoUrl = "https://github.com/terrylica/dukascopy-node/tree/main/ai-stocks";
+const readmeUrl = "https://github.com/terrylica/dukascopy-node/blob/main/ai-stocks/README.md";
+const releaseUrl = "https://github.com/terrylica/dukascopy-node/releases/tag/ai-stocks-v1";
+const demoUrl = "https://www.dukascopy.com/swiss/english/forex/demo-fx-account/";
+const reproRecipe = `Reproduce the Dukascopy AI US-stock 5-minute data pack end-to-end.
+
+STEP 0 — HUMAN, REQUIRED, CANNOT BE AUTOMATED (do this yourself before running anything):
+  Register a FREE Dukascopy demo account at:
+    ${demoUrl}
+  Fill the form (name, email, country, phone). No email confirmation/click-to-verify is needed —
+  the account works immediately. Within minutes you receive an email ("Your Demo Trading Account
+  Is Ready") with your JForex Login + Password. Keep them. (The bar data is pulled from Dukascopy's
+  public chart API and needs no credentials stored in the scripts; the demo account is your
+  authorized access to the platform and how to inspect/verify the source.)
+
+THEN, in a Claude Code session (all scripts live at ${repoUrl}):
+  git clone https://github.com/terrylica/dukascopy-node && cd dukascopy-node/ai-stocks && bun install
+  bun run freeserv_fetch.ts         # pull 5-min bid+ask for all instruments -> raw/
+  bun run fetch_fundamentals.ts      # refresh market cap + liquidity from Nasdaq
+  bun run validate_timestamps.ts     # integrity gate (expect "ALL TIMESTAMP CHECKS PASSED")
+  bun run build_outputs.ts           # merge/mid/validate/zip/sha256 -> build/ + manifest.json
+  AWS_PROFILE=<you> AWS_REGION=us-west-2 bun run upload_s3.ts   # public-read S3 bucket
+  bun run render_page.ts             # regenerate the page (site/index.html), then deploy it
+
+Full write-up, schema and notes: ${readmeUrl}`;
+
 const html = `<!doctype html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -245,9 +271,15 @@ ${process.env.PARTIAL_NOTE ? `<div style="background:#d29922;color:#1c1300;font-
 <div class="vbadge">✓ ${totalBars.toLocaleString()} bars validated — every timestamp UTC, 5-minute-aligned, strictly increasing, zero duplicates</div>
 </div>
 
-<h2>Use it with Claude Code <small>paste this to start analyzing the data</small></h2>
-<p class="meta">The dataset ships with a machine-readable <a href="${manifestUrl}">manifest.json</a> indexing every file. Paste the prompt below into a Claude Code (or any AI coding-agent) session — it is self-contained and will discover, download, verify and start using the data on its own.</p>
+<h2>Use it with Claude Code <small>two ready-to-paste recipes</small></h2>
+<h3 style="margin-top:8px">1 · Consume the data <small>no setup, no account</small></h3>
+<p class="meta">The dataset ships with a machine-readable <a href="${manifestUrl}">manifest.json</a> indexing every file. Paste this into a Claude Code (or any AI coding-agent) session — it is self-contained and will discover, download, verify and use the data on its own.</p>
 <pre class="recipe">${esc(recipe)}</pre>
+
+<h3 style="margin-top:26px">2 · Reproduce the whole pipeline <small>regenerate everything — e.g. to add fresh data next month</small></h3>
+<div class="callout warn" style="margin-top:8px"><b>⚠ One human step, required.</b> Reproducing from scratch uses Dukascopy's demo platform, and the free <b>demo account must be registered by a person — it cannot be automated</b>. No email confirmation/click-to-verify is needed; your JForex login + password arrive by email ("Your Demo Trading Account Is Ready") within minutes. <a href="${demoUrl}">Register a demo account →</a></div>
+<pre class="recipe">${esc(reproRecipe)}</pre>
+<p class="meta">Full method, all scripts and the release are on GitHub: <a href="${repoUrl}">ai-stocks/ source</a> · <a href="${readmeUrl}">README</a> · <a href="${releaseUrl}">v1 release (data + checksums)</a>.</p>
 
 <div class="callout warn">
 <b>Read me — honest caveats.</b> This is <b>Dukascopy CFD quote data</b>, not the official consolidated exchange tape. There are <b>no trade prints</b> (hence bid/ask), prices are <b>split-adjusted</b> (corporate splits back-applied for a continuous series), volume is <b>indicative only</b>, all timestamps are <b>UTC</b> (see <i>Data &amp; timestamps</i> above for session windows), and history depth varies by listing (mega-caps from ~2017; newer names later). The ranking figures are analyst-curated approximations for ordering only — not exact financials, not investment advice.${staleCount ? ` A <span class="stale">⚠ feed ended</span> tag marks instruments whose Dukascopy CFD was discontinued before the dataset's latest date (e.g. ANET, after its Dec-2024 4-for-1 split) — their history is complete up to that date.` : ""}
@@ -255,7 +287,7 @@ ${process.env.PARTIAL_NOTE ? `<div style="background:#d29922;color:#1c1300;font-
 
 <footer>
 Source: Dukascopy stock-CFD price feed (freeserv chart API) · Bun/TypeScript pipeline · ${manifest.timeframe}.
-Integrity: every file's SHA-256 is in CHECKSUMS.txt and manifest.json. ${esc(RANK_META.disclaimer)}
+Integrity: every file's SHA-256 is in CHECKSUMS.txt and manifest.json. Method &amp; code: <a href="${repoUrl}">GitHub</a> · <a href="${releaseUrl}">v1 release</a>. ${esc(RANK_META.disclaimer)}
 </footer>
 </div></body></html>`;
 
