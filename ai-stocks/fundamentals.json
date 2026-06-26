@@ -1,0 +1,208 @@
+{
+  "source": "Nasdaq (api.nasdaq.com) — exchange market data; covers NYSE & Nasdaq listings",
+  "as_of": "Jun 25, 2026",
+  "fields": {
+    "mcapUsdB": "market capitalization, USD billions",
+    "advUsdB": "avg daily $ volume = AverageVolume(shares) x last price, USD billions"
+  },
+  "count": 28,
+  "data": {
+    "ADBE": {
+      "mcapUsdB": 77,
+      "advUsdB": 1.2,
+      "marketCap": 76880475000,
+      "avgVolume": 6337723,
+      "price": 193.41
+    },
+    "CRM": {
+      "mcapUsdB": 123,
+      "advUsdB": 1.1,
+      "marketCap": 123005610000,
+      "avgVolume": 7221650,
+      "price": 150.19
+    },
+    "MDB": {
+      "mcapUsdB": 24,
+      "advUsdB": 0.6,
+      "marketCap": 23655029731,
+      "avgVolume": 2101446,
+      "price": 294.1
+    },
+    "NOW": {
+      "mcapUsdB": 92,
+      "advUsdB": 0.1,
+      "marketCap": 92295120000,
+      "avgVolume": 1601667,
+      "price": 89.52
+    },
+    "ORCL": {
+      "mcapUsdB": 439,
+      "advUsdB": 2.2,
+      "marketCap": 439156608660,
+      "avgVolume": 14267831,
+      "price": 152.46
+    },
+    "PANW": {
+      "mcapUsdB": 239,
+      "advUsdB": 2.3,
+      "marketCap": 238868350000,
+      "avgVolume": 7959420,
+      "price": 293.09
+    },
+    "PLTR": {
+      "mcapUsdB": 257,
+      "advUsdB": 4.5,
+      "marketCap": 257159655773,
+      "avgVolume": 42182220,
+      "price": 107.27
+    },
+    "AMAT": {
+      "mcapUsdB": 530,
+      "advUsdB": 5.4,
+      "marketCap": 530364899240,
+      "avgVolume": 8117204,
+      "price": 668
+    },
+    "AMD": {
+      "mcapUsdB": 868,
+      "advUsdB": 20,
+      "marketCap": 868408982312,
+      "avgVolume": 37507734,
+      "price": 532.57
+    },
+    "AVGO": {
+      "mcapUsdB": 1803,
+      "advUsdB": 9.9,
+      "marketCap": 1802694712824,
+      "avgVolume": 26243882,
+      "price": 378.91
+    },
+    "INTC": {
+      "mcapUsdB": 668,
+      "advUsdB": 18.4,
+      "marketCap": 667804620000,
+      "avgVolume": 138591055,
+      "price": 132.87
+    },
+    "LRCX": {
+      "mcapUsdB": 503,
+      "advUsdB": 4.1,
+      "marketCap": 502504439220,
+      "avgVolume": 10279432,
+      "price": 401.82
+    },
+    "MRVL": {
+      "mcapUsdB": 246,
+      "advUsdB": 12.6,
+      "marketCap": 246046248000,
+      "avgVolume": 44688583,
+      "price": 281.26
+    },
+    "MU": {
+      "mcapUsdB": 1369,
+      "advUsdB": 60.9,
+      "marketCap": 1368572934932,
+      "avgVolume": 50147678,
+      "price": 1213.56
+    },
+    "NVDA": {
+      "mcapUsdB": 4737,
+      "advUsdB": 31.6,
+      "marketCap": 4736908000000,
+      "avgVolume": 161378767,
+      "price": 195.74
+    },
+    "QCOM": {
+      "mcapUsdB": 216,
+      "advUsdB": 4.9,
+      "marketCap": 215964600000,
+      "avgVolume": 23687258,
+      "price": 204.9
+    },
+    "TSM": {
+      "mcapUsdB": 2256,
+      "advUsdB": 4.6,
+      "marketCap": 2256077768191,
+      "avgVolume": 10483275,
+      "price": 434.99
+    },
+    "TXN": {
+      "mcapUsdB": 284,
+      "advUsdB": 2.7,
+      "marketCap": 283776033162,
+      "avgVolume": 8602212,
+      "price": 311.81
+    },
+    "ANET": {
+      "mcapUsdB": 208,
+      "advUsdB": 0.1,
+      "marketCap": 208335069012,
+      "avgVolume": 695182,
+      "price": 165.45
+    },
+    "DELL": {
+      "mcapUsdB": 265,
+      "advUsdB": 1.1,
+      "marketCap": 265367816915,
+      "avgVolume": 2729951,
+      "price": 409.45
+    },
+    "AAPL": {
+      "mcapUsdB": 4041,
+      "advUsdB": 13.6,
+      "marketCap": 4041226003400,
+      "avgVolume": 49338158,
+      "price": 275.15
+    },
+    "AMZN": {
+      "mcapUsdB": 2442,
+      "advUsdB": 10.4,
+      "marketCap": 2441971413066,
+      "avgVolume": 45730621,
+      "price": 227.01
+    },
+    "GOOG": {
+      "mcapUsdB": 4146,
+      "advUsdB": 7.1,
+      "marketCap": 4145974040000,
+      "avgVolume": 20730489,
+      "price": 342.19
+    },
+    "GOOGL": {
+      "mcapUsdB": 4164,
+      "advUsdB": 10.5,
+      "marketCap": 4164390360000,
+      "avgVolume": 30460743,
+      "price": 343.71
+    },
+    "META": {
+      "mcapUsdB": 1378,
+      "advUsdB": 9,
+      "marketCap": 1378033859042,
+      "avgVolume": 16596353,
+      "price": 542.87
+    },
+    "MSFT": {
+      "mcapUsdB": 2621,
+      "advUsdB": 13,
+      "marketCap": 2620974616612,
+      "avgVolume": 36934560,
+      "price": 352.83
+    },
+    "TSLA": {
+      "mcapUsdB": 1409,
+      "advUsdB": 20.5,
+      "marketCap": 1408847138490,
+      "avgVolume": 54570743,
+      "price": 375.12
+    },
+    "SNOW": {
+      "mcapUsdB": 79,
+      "advUsdB": 1.2,
+      "marketCap": 78698996000,
+      "avgVolume": 5417665,
+      "price": 227.06,
+      "advNote": "single-day volume proxy — Nasdaq avg-volume N/A"
+    }
+  }
+}

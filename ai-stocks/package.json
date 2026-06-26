@@ -1,0 +1,23 @@
+{
+  "name": "ai-stocks-data-pack",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Dukascopy AI US-stock 5-min bid/ask OHLCV data pack — Bun/TS pipeline",
+  "scripts": {
+    "gen:instruments": "bun run gen_instruments.ts",
+    "build": "bun run build_outputs.ts",
+    "upload": "bun run upload_s3.ts",
+    "render": "bun run render_page.ts"
+  },
+  "dependencies": {
+    "@aws-sdk/client-ec2": "^3.1075.0",
+    "@aws-sdk/client-s3": "^3.700.0",
+    "@aws-sdk/s3-request-presigner": "^3.1075.0",
+    "fflate": "^0.8.2",
+    "playwright": "^1.61.1"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.1.14"
+  }
+}

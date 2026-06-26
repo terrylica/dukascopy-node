@@ -1,0 +1,333 @@
+{
+  "source": "Dukascopy stock-CFD price feed — freeserv chart API (json3), split-adjusted",
+  "snapshot_file": "dukascopy_instruments_snapshot.jsonp",
+  "timeframe": "m5 (5-minute OHLCV)",
+  "price_sides": [
+    "bid",
+    "ask"
+  ],
+  "note": "CFD quotes, not exchange trades; volume is indicative; timestamps UTC.",
+  "count_single_stocks": 28,
+  "count_bonus_etf": 1,
+  "instruments": [
+    {
+      "ticker": "ADBE",
+      "instrument_id": "adbeususd",
+      "dukascopy_title": "ADBE.US/USD",
+      "description": "ADOBE SYSTEMS INC",
+      "category": "AI / enterprise software",
+      "ai_thesis": "Firefly generative-AI creative suite.",
+      "is_bonus_etf": false,
+      "history_start_tick_ms": 1494509410165,
+      "from_date": "2017-05-11"
+    },
+    {
+      "ticker": "CRM",
+      "instrument_id": "crmususd",
+      "dukascopy_title": "CRM.US/USD",
+      "description": "SALESFORCE.COM INC",
+      "category": "AI / enterprise software",
+      "ai_thesis": "Agentforce / Einstein enterprise AI agents.",
+      "is_bonus_etf": false,
+      "history_start_tick_ms": 1494509414053,
+      "from_date": "2017-05-11"
+    },
+    {
+      "ticker": "MDB",
+      "instrument_id": "mdbususd",
+      "dukascopy_title": "MDB.US/USD",
+      "description": "MONGODB INC",
+      "category": "AI / enterprise software",
+      "ai_thesis": "Vector search backing RAG/AI applications.",
+      "is_bonus_etf": false,
+      "history_start_tick_ms": 1652449498427,
+      "from_date": "2022-05-13"
+    },
+    {
+      "ticker": "NOW",
+      "instrument_id": "nowususd",
+      "dukascopy_title": "NOW.US/USD",
+      "description": "SERVICENOW INC",
+      "category": "AI / enterprise software",
+      "ai_thesis": "Now Assist generative-AI workflow automation.",
+      "is_bonus_etf": false,
+      "history_start_tick_ms": 1652449694318,
+      "from_date": "2022-05-13"
+    },
+    {
+      "ticker": "ORCL",
+      "instrument_id": "orclususd",
+      "dukascopy_title": "ORCL.US/USD",
+      "description": "ORACLE CORP",
+      "category": "AI / enterprise software",
+      "ai_thesis": "OCI GPU cloud build-out for AI training.",
+      "is_bonus_etf": false,
+      "history_start_tick_ms": 1509637999505,
+      "from_date": "2017-11-02"
+    },
+    {
+      "ticker": "PANW",
+      "instrument_id": "panwususd",
+      "dukascopy_title": "PANW.US/USD",
+      "description": "PALO ALTO NETWORKS INC",
+      "category": "AI / enterprise software",
+      "ai_thesis": "AI-driven security (Precision AI).",
+      "is_bonus_etf": false,
+      "history_start_tick_ms": 1652450036105,
+      "from_date": "2022-05-13"
+    },
+    {
+      "ticker": "PLTR",
+      "instrument_id": "pltrususd",
+      "dukascopy_title": "PLTR.US/USD",
+      "description": "Palantir Tech Inc A",
+      "category": "AI / enterprise software",
+      "ai_thesis": "AIP — operational LLM platform for gov/enterprise.",
+      "is_bonus_etf": false,
+      "history_start_tick_ms": 1601510400901,
+      "from_date": "2020-10-01"
+    },
+    {
+      "ticker": "SNOW",
+      "instrument_id": "snowususd",
+      "dukascopy_title": "SNOW.US/USD",
+      "description": "Snowflake Inc Class A",
+      "category": "AI / enterprise software",
+      "ai_thesis": "Cortex AI over enterprise data warehouses.",
+      "is_bonus_etf": false,
+      "history_start_tick_ms": 1600732800379,
+      "from_date": "2020-09-22"
+    },
+    {
+      "ticker": "AMAT",
+      "instrument_id": "amatususd",
+      "dukascopy_title": "AMAT.US/USD",
+      "description": "APPLIED MATERIALS INC",
+      "category": "AI compute / semiconductors",
+      "ai_thesis": "Wafer-fab equipment enabling advanced AI nodes.",
+      "is_bonus_etf": false,
+      "history_start_tick_ms": 1494509403833,
+      "from_date": "2017-05-11"
+    },
+    {
+      "ticker": "AMD",
+      "instrument_id": "amdususd",
+      "dukascopy_title": "AMD.US/USD",
+      "description": "ADVANCED MICRO DEVICES",
+      "category": "AI compute / semiconductors",
+      "ai_thesis": "MI-series data-center GPUs; #2 AI accelerator.",
+      "is_bonus_etf": false,
+      "history_start_tick_ms": 1509630108274,
+      "from_date": "2017-11-02"
+    },
+    {
+      "ticker": "AVGO",
+      "instrument_id": "avgoususd",
+      "dukascopy_title": "AVGO.US/USD",
+      "description": "Broadcom Limited",
+      "category": "AI compute / semiconductors",
+      "ai_thesis": "Custom AI ASICs + AI networking silicon.",
+      "is_bonus_etf": false,
+      "history_start_tick_ms": 1488391981772,
+      "from_date": "2017-03-01"
+    },
+    {
+      "ticker": "INTC",
+      "instrument_id": "intcususd",
+      "dukascopy_title": "INTC.US/USD",
+      "description": "INTEL CORP",
+      "category": "AI compute / semiconductors",
+      "ai_thesis": "Gaudi accelerators + AI-PC CPUs; foundry ambitions.",
+      "is_bonus_etf": false,
+      "history_start_tick_ms": 1488392019464,
+      "from_date": "2017-03-01"
+    },
+    {
+      "ticker": "LRCX",
+      "instrument_id": "lrcxususd",
+      "dukascopy_title": "LRCX.US/USD",
+      "description": "LAM RESEARCH CORP",
+      "category": "AI compute / semiconductors",
+      "ai_thesis": "Etch/deposition tools for leading-edge AI chips.",
+      "is_bonus_etf": false,
+      "history_start_tick_ms": 1509629400810,
+      "from_date": "2017-11-02"
+    },
+    {
+      "ticker": "MRVL",
+      "instrument_id": "mrvlususd",
+      "dukascopy_title": "MRVL.US/USD",
+      "description": "MARVELL TECHNOLOGY INC",
+      "category": "AI compute / semiconductors",
+      "ai_thesis": "Custom AI silicon + data-center interconnect.",
+      "is_bonus_etf": false,
+      "history_start_tick_ms": 1652449595384,
+      "from_date": "2022-05-13"
+    },
+    {
+      "ticker": "MU",
+      "instrument_id": "muususd",
+      "dukascopy_title": "MU.US/USD",
+      "description": "MICRON TECHNOLOGY INC",
+      "category": "AI compute / semiconductors",
+      "ai_thesis": "HBM memory — the bottleneck for AI accelerators.",
+      "is_bonus_etf": false,
+      "history_start_tick_ms": 1509629400026,
+      "from_date": "2017-11-02"
+    },
+    {
+      "ticker": "NVDA",
+      "instrument_id": "nvdaususd",
+      "dukascopy_title": "NVDA.US/USD",
+      "description": "NVIDIA CORP",
+      "category": "AI compute / semiconductors",
+      "ai_thesis": "The dominant AI training/inference GPU supplier.",
+      "is_bonus_etf": false,
+      "history_start_tick_ms": 1488391979927,
+      "from_date": "2017-03-01"
+    },
+    {
+      "ticker": "QCOM",
+      "instrument_id": "qcomususd",
+      "dukascopy_title": "QCOM.US/USD",
+      "description": "QUALCOMM INC",
+      "category": "AI compute / semiconductors",
+      "ai_thesis": "On-device / edge AI inference (NPU).",
+      "is_bonus_etf": false,
+      "history_start_tick_ms": 1509629400002,
+      "from_date": "2017-11-02"
+    },
+    {
+      "ticker": "TSM",
+      "instrument_id": "tsmususd",
+      "dukascopy_title": "TSM.US/USD",
+      "description": "Taiwan Semiconductor Manufacturing Company Limited",
+      "category": "AI compute / semiconductors",
+      "ai_thesis": "Foundry that fabricates virtually every AI chip.",
+      "is_bonus_etf": false,
+      "history_start_tick_ms": 1517500371956,
+      "from_date": "2018-02-01"
+    },
+    {
+      "ticker": "TXN",
+      "instrument_id": "txnususd",
+      "dukascopy_title": "TXN.US/USD",
+      "description": "TEXAS INSTRUMENTS INC",
+      "category": "AI compute / semiconductors",
+      "ai_thesis": "Analog/embedded silicon feeding AI hardware.",
+      "is_bonus_etf": false,
+      "history_start_tick_ms": 1509629400095,
+      "from_date": "2017-11-02"
+    },
+    {
+      "ticker": "ANET",
+      "instrument_id": "anetususd",
+      "dukascopy_title": "ANET.US/USD",
+      "description": "ARISTA NETWORKS INC",
+      "category": "AI infrastructure / networking",
+      "ai_thesis": "Ethernet switching fabric for AI clusters.",
+      "is_bonus_etf": false,
+      "history_start_tick_ms": 1652371643321,
+      "from_date": "2022-05-12"
+    },
+    {
+      "ticker": "DELL",
+      "instrument_id": "dellususd",
+      "dukascopy_title": "DELL.US/USD",
+      "description": "DELL TECHNOLOGIES -C",
+      "category": "AI infrastructure / networking",
+      "ai_thesis": "AI servers (GB200) + enterprise AI infra.",
+      "is_bonus_etf": false,
+      "history_start_tick_ms": 1652372347995,
+      "from_date": "2022-05-12"
+    },
+    {
+      "ticker": "AAPL",
+      "instrument_id": "aaplususd",
+      "dukascopy_title": "AAPL.US/USD",
+      "description": "APPLE INC",
+      "category": "Mega-cap AI platform",
+      "ai_thesis": "Apple Intelligence on-device AI.",
+      "is_bonus_etf": false,
+      "history_start_tick_ms": 1488294983405,
+      "from_date": "2017-02-28"
+    },
+    {
+      "ticker": "AMZN",
+      "instrument_id": "amznususd",
+      "dukascopy_title": "AMZN.US/USD",
+      "description": "AMAZON.COM INC",
+      "category": "Mega-cap AI platform",
+      "ai_thesis": "AWS Bedrock/Trainium; Anthropic backer.",
+      "is_bonus_etf": false,
+      "history_start_tick_ms": 1488297525434,
+      "from_date": "2017-02-28"
+    },
+    {
+      "ticker": "GOOG",
+      "instrument_id": "googususd",
+      "dukascopy_title": "GOOG.US/USD",
+      "description": "ALPHABET INC-CL C",
+      "category": "Mega-cap AI platform",
+      "ai_thesis": "Gemini, TPUs, DeepMind (Class C).",
+      "is_bonus_etf": false,
+      "history_start_tick_ms": 1488391979642,
+      "from_date": "2017-03-01"
+    },
+    {
+      "ticker": "GOOGL",
+      "instrument_id": "googlususd",
+      "dukascopy_title": "GOOGL.US/USD",
+      "description": "ALPHABET INC-CL A",
+      "category": "Mega-cap AI platform",
+      "ai_thesis": "Gemini, TPUs, DeepMind (Class A).",
+      "is_bonus_etf": false,
+      "history_start_tick_ms": 1488391988656,
+      "from_date": "2017-03-01"
+    },
+    {
+      "ticker": "META",
+      "instrument_id": "fbususd",
+      "dukascopy_title": "FB.US/USD",
+      "description": "FACEBOOK INC-A / META",
+      "category": "Mega-cap AI platform",
+      "ai_thesis": "Llama open models + AI-driven ad ranking.",
+      "is_bonus_etf": false,
+      "history_start_tick_ms": 1488391984214,
+      "from_date": "2017-03-01"
+    },
+    {
+      "ticker": "MSFT",
+      "instrument_id": "msftususd",
+      "dukascopy_title": "MSFT.US/USD",
+      "description": "MICROSOFT CORP",
+      "category": "Mega-cap AI platform",
+      "ai_thesis": "Copilot + Azure OpenAI; largest AI-cloud spender.",
+      "is_bonus_etf": false,
+      "history_start_tick_ms": 1488391984221,
+      "from_date": "2017-03-01"
+    },
+    {
+      "ticker": "TSLA",
+      "instrument_id": "tslaususd",
+      "dukascopy_title": "TSLA.US/USD",
+      "description": "TESLA MOTORS INC",
+      "category": "Mega-cap AI platform",
+      "ai_thesis": "FSD/Dojo autonomy + humanoid robotics AI.",
+      "is_bonus_etf": false,
+      "history_start_tick_ms": 1488391988362,
+      "from_date": "2017-03-01"
+    },
+    {
+      "ticker": "WTAI",
+      "instrument_id": "wtaiususd",
+      "dukascopy_title": "WTAI.US/USD",
+      "description": "Wisdomtree Artificial Intelligence And Innovation Fund",
+      "category": "AI thematic ETF (bonus)",
+      "ai_thesis": "WisdomTree Artificial Intelligence & Innovation ETF.",
+      "is_bonus_etf": true,
+      "history_start_tick_ms": 1729581101608,
+      "from_date": "2024-10-22"
+    }
+  ]
+}

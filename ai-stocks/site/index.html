@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>AI US-Stock 5-min Data Pack — Dukascopy</title>
+<style>
+:root{--bg:#0d1117;--panel:#161b22;--bd:#30363d;--fg:#e6edf3;--mut:#8b949e;--ac:#58a6ff;--grn:#3fb950}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:1500px;margin:0 auto;padding:36px 28px 90px}
+h1{font-size:30px;margin:0 0 6px}h2{font-size:21px;margin:42px 0 14px;border-bottom:1px solid var(--bd);padding-bottom:8px}
+h3{font-size:16px;margin:0 0 12px}h3 small,h2 small{color:var(--mut);font-weight:400;font-size:13px}
+a{color:var(--ac);text-decoration:none}a:hover{text-decoration:underline}
+.lede{color:var(--mut);font-size:16px;max-width:80ch}
+.meta{color:var(--mut);font-size:13px;margin-top:10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px}
+.rgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(600px,100%),1fr));gap:18px}
+.card{background:var(--panel);border:1px solid var(--bd);border-radius:10px;padding:16px;overflow-x:auto}
+.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--bd);vertical-align:top}
+th{color:var(--mut);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.03em}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.rk{color:var(--mut);width:24px}.tk{font-weight:700;color:#fff;white-space:nowrap}
+.cat{color:var(--mut);font-size:12px}.rng{color:var(--mut);font-size:12px;white-space:nowrap}
+.stale{color:#d29922;font-weight:600}
+.thesis{color:var(--mut);font-size:12px;margin-top:2px}
+.tier{display:inline-block;padding:1px 7px;border-radius:20px;font-size:11px;font-weight:700}
+.t1{background:#1f6feb33;color:#79c0ff;border:1px solid #1f6feb}
+.t2{background:#3fb95033;color:#7ee787;border:1px solid #2ea043}
+.t3{background:#6e768133;color:#c9d1d9;border:1px solid #484f58}
+.src{display:inline-block;font-size:10.5px;font-weight:600;padding:1px 7px;border-radius:5px;vertical-align:middle;white-space:nowrap}
+.srcN{background:#1f6feb22;color:#79c0ff;border:1px solid #1f6feb55}
+.srcE{background:#6e768122;color:#8b949e;border:1px solid #484f58}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:0}.chip{background:#21262d;border:1px solid var(--bd);border-radius:6px;padding:2px 8px;font-weight:600;font-size:12px}
+.btn{display:inline-block;background:#21262d;border:1px solid var(--bd);border-radius:6px;padding:4px 10px;margin:1px 0;font-size:12px;font-weight:600;color:var(--fg)}
+.btn:hover{border-color:var(--ac);text-decoration:none}.btn.ghost{background:transparent;color:var(--mut)}
+.dls{white-space:nowrap}.spark{display:block}
+.grandbar{display:flex;flex-wrap:wrap;align-items:center;gap:16px;background:linear-gradient(90deg,#1f6feb22,#161b22);border:1px solid #1f6feb55;border-radius:10px;padding:16px 20px;margin:18px 0}
+.grandbar .big{font-size:17px;font-weight:700}
+.callout{background:#161b22;border-left:3px solid var(--ac);padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0;color:var(--mut)}
+.warn{border-left-color:#d29922}
+code{background:#21262d;padding:1px 6px;border-radius:5px;font-size:13px}
+pre.recipe{background:#0b0f14;border:1px solid var(--bd);border-radius:8px;padding:16px 18px;overflow-x:auto;font:12.5px/1.55 ui-monospace,Menlo,Consolas,monospace;color:#c9d1d9;white-space:pre-wrap;word-break:break-word}
+.vbadge{display:inline-block;background:#3fb95022;border:1px solid #2ea043;color:#7ee787;border-radius:6px;padding:3px 10px;font-size:12px;font-weight:600;margin-top:8px}
+.dict{font-size:13px}.dict td:first-child{color:#79c0ff;font-family:ui-monospace,Menlo,monospace;white-space:nowrap}
+footer{color:var(--mut);font-size:12px;margin-top:50px;border-top:1px solid var(--bd);padding-top:18px}
+</style></head><body><div class="wrap">
+
+
+<h1>AI US-Stock Data Pack — 5-minute OHLCV (bid &amp; ask)</h1>
+<p class="lede">Historical 5-minute price bars for 28 of the most actively-traded, AI-related US stocks (plus a bonus AI thematic ETF), sourced from Dukascopy. Because Dukascopy quotes stock CFDs rather than exchange trades, every bar is provided on <b>both the bid and the ask side</b>, with a computed <b>mid</b>. Pick a tier below, or grab everything in one bundle.</p>
+<p class="meta">Generated 2026-06-26 07:27:23 UTC · Prices: Dukascopy stock-CFD price feed — freeserv chart API (json3), split-adjusted · Financials: Nasdaq (Jun 25, 2026) · Timestamps UTC.</p>
+
+<div class="grandbar">
+  <div><div class="big">⬇︎ Download everything</div><div class="meta">All 29 instruments · per-stock CSV bundles in one archive</div></div>
+  <a class="btn" style="font-size:14px;padding:8px 16px" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/ai-stocks-m5-all.zip">ai-stocks-m5-all.zip · 285.8 MB</a>
+  <a class="btn ghost" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/CHECKSUMS.txt">CHECKSUMS.txt</a>
+  <a class="btn ghost" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/manifest.json">manifest.json</a>
+</div>
+
+<h2>Why these stocks <small>the selection, justified</small></h2>
+<div class="callout">
+<b>AI-related &amp; actively traded.</b> We started from the US single-stock CFDs Dukascopy carries and kept the companies whose value is driven by AI: the chipmakers that build AI accelerators, the mega-cap platforms running frontier models, the enterprise-AI software vendors, and the networking/infrastructure that wires AI data-centers. Names that are <i>not</i> on Dukascopy (e.g. SMCI, CRWD, ARM Holdings, ASML US ADR) are intentionally absent — verified against Dukascopy's live instrument feed.
+</div>
+<p>Rather than one opinionated "top 10", the same universe is ranked <b>four different ways</b> so you can pick the lens that matters. Each stock's <b>composite tier</b> reflects how many of these lenses rank it in the top 10:</p>
+<div class="grid"><div class="card tcard"><h3><span class="tier t1">Tier 1</span> <small>Top-10 in 3+ ranking methods — the core, must-have AI names.</small></h3>
+   <p class="chips"><span class="chip">AMD</span> <span class="chip">AVGO</span> <span class="chip">MU</span> <span class="chip">NVDA</span> <span class="chip">AAPL</span> <span class="chip">AMZN</span> <span class="chip">GOOGL</span> <span class="chip">TSLA</span></p></div><div class="card tcard"><h3><span class="tier t2">Tier 2</span> <small>Top-10 in 1–2 ranking methods — strong secondary AI exposure.</small></h3>
+   <p class="chips"><span class="chip">PLTR</span> <span class="chip">INTC</span> <span class="chip">MRVL</span> <span class="chip">TSM</span> <span class="chip">ANET</span> <span class="chip">GOOG</span> <span class="chip">META</span> <span class="chip">MSFT</span></p></div><div class="card tcard"><h3><span class="tier t3">Tier 3</span> <small>Broader AI universe — sector completeness.</small></h3>
+   <p class="chips"><span class="chip">ADBE</span> <span class="chip">CRM</span> <span class="chip">MDB</span> <span class="chip">NOW</span> <span class="chip">ORCL</span> <span class="chip">PANW</span> <span class="chip">SNOW</span> <span class="chip">AMAT</span> <span class="chip">LRCX</span> <span class="chip">QCOM</span> <span class="chip">TXN</span> <span class="chip">DELL</span></p></div></div>
+
+<h2>Four ranking views</h2>
+<p class="meta"><b>Market cap</b> and <b>Liquidity</b> (avg daily $ volume) are live figures from <b>Nasdaq</b> (api.nasdaq.com), as-of Jun 25, 2026 — not estimates. <b>AI relevance</b> and <b>Options / retail buzz</b> are clearly-labelled <i>editorial</i> scores: qualitative lenses for ordering, not sourced financials. Not investment advice. Figures are illustrative orderings, not exact financials.</p>
+<div class="rgrid"><div class="card"><h3>Liquidity <small>avg daily $ volume</small> <span class="src srcN" title="Live market data from Nasdaq's API, as-of Jun 25, 2026">Nasdaq · Jun 25, 2026</span></h3>
+  <table><thead><tr><th>#</th><th>Ticker</th><th>Company</th><th class="num">Value</th><th>Tier</th></tr></thead><tbody><tr><td class="rk">1</td><td class="tk">MU</td><td>MICRON TECHNOLOGY INC</td><td class="num">$60.9B</td><td><span class="tier t1">T1</span></td></tr><tr><td class="rk">2</td><td class="tk">NVDA</td><td>NVIDIA CORP</td><td class="num">$31.6B</td><td><span class="tier t1">T1</span></td></tr><tr><td class="rk">3</td><td class="tk">TSLA</td><td>TESLA MOTORS INC</td><td class="num">$20.5B</td><td><span class="tier t1">T1</span></td></tr><tr><td class="rk">4</td><td class="tk">AMD</td><td>ADVANCED MICRO DEVICES</td><td class="num">$20B</td><td><span class="tier t1">T1</span></td></tr><tr><td class="rk">5</td><td class="tk">INTC</td><td>INTEL CORP</td><td class="num">$18.4B</td><td><span class="tier t2">T2</span></td></tr><tr><td class="rk">6</td><td class="tk">AAPL</td><td>APPLE INC</td><td class="num">$13.6B</td><td><span class="tier t1">T1</span></td></tr><tr><td class="rk">7</td><td class="tk">MSFT</td><td>MICROSOFT CORP</td><td class="num">$13B</td><td><span class="tier t2">T2</span></td></tr><tr><td class="rk">8</td><td class="tk">MRVL</td><td>MARVELL TECHNOLOGY INC</td><td class="num">$12.6B</td><td><span class="tier t2">T2</span></td></tr><tr><td class="rk">9</td><td class="tk">GOOGL</td><td>ALPHABET INC-CL A</td><td class="num">$10.5B</td><td><span class="tier t1">T1</span></td></tr><tr><td class="rk">10</td><td class="tk">AMZN</td><td>AMAZON.COM INC</td><td class="num">$10.4B</td><td><span class="tier t1">T1</span></td></tr><tr><td class="rk">11</td><td class="tk">AVGO</td><td>Broadcom Limited</td><td class="num">$9.9B</td><td><span class="tier t1">T1</span></td></tr><tr><td class="rk">12</td><td class="tk">META</td><td>FACEBOOK INC-A / META</td><td class="num">$9B</td><td><span class="tier t2">T2</span></td></tr><tr><td class="rk">13</td><td class="tk">GOOG</td><td>ALPHABET INC-CL C</td><td class="num">$7.1B</td><td><span class="tier t2">T2</span></td></tr><tr><td class="rk">14</td><td class="tk">AMAT</td><td>APPLIED MATERIALS INC</td><td class="num">$5.4B</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">15</td><td class="tk">QCOM</td><td>QUALCOMM INC</td><td class="num">$4.9B</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">16</td><td class="tk">TSM</td><td>Taiwan Semiconductor Manufacturing Company Limited</td><td class="num">$4.6B</td><td><span class="tier t2">T2</span></td></tr><tr><td class="rk">17</td><td class="tk">PLTR</td><td>Palantir Tech Inc A</td><td class="num">$4.5B</td><td><span class="tier t2">T2</span></td></tr><tr><td class="rk">18</td><td class="tk">LRCX</td><td>LAM RESEARCH CORP</td><td class="num">$4.1B</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">19</td><td class="tk">TXN</td><td>TEXAS INSTRUMENTS INC</td><td class="num">$2.7B</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">20</td><td class="tk">PANW</td><td>PALO ALTO NETWORKS INC</td><td class="num">$2.3B</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">21</td><td class="tk">ORCL</td><td>ORACLE CORP</td><td class="num">$2.2B</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">22</td><td class="tk">ADBE</td><td>ADOBE SYSTEMS INC</td><td class="num">$1.2B</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">23</td><td class="tk">SNOW</td><td>Snowflake Inc Class A</td><td class="num">$1.2B</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">24</td><td class="tk">CRM</td><td>SALESFORCE.COM INC</td><td class="num">$1.1B</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">25</td><td class="tk">DELL</td><td>DELL TECHNOLOGIES -C</td><td class="num">$1.1B</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">26</td><td class="tk">MDB</td><td>MONGODB INC</td><td class="num">$0.6B</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">27</td><td class="tk">NOW</td><td>SERVICENOW INC</td><td class="num">$0.1B</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">28</td><td class="tk">ANET</td><td>ARISTA NETWORKS INC</td><td class="num">$0.1B</td><td><span class="tier t2">T2</span></td></tr></tbody></table></div><div class="card"><h3>AI relevance <small>how core AI is</small> <span class="src srcE" title="Our editorial estimate — a qualitative lens, not a sourced financial figure">editorial estimate</span></h3>
+  <table><thead><tr><th>#</th><th>Ticker</th><th>Company</th><th class="num">Score</th><th>Tier</th></tr></thead><tbody><tr><td class="rk">1</td><td class="tk">NVDA</td><td>NVIDIA CORP</td><td class="num">100</td><td><span class="tier t1">T1</span></td></tr><tr><td class="rk">2</td><td class="tk">PLTR</td><td>Palantir Tech Inc A</td><td class="num">95</td><td><span class="tier t2">T2</span></td></tr><tr><td class="rk">3</td><td class="tk">AMD</td><td>ADVANCED MICRO DEVICES</td><td class="num">92</td><td><span class="tier t1">T1</span></td></tr><tr><td class="rk">4</td><td class="tk">AVGO</td><td>Broadcom Limited</td><td class="num">90</td><td><span class="tier t1">T1</span></td></tr><tr><td class="rk">5</td><td class="tk">MRVL</td><td>MARVELL TECHNOLOGY INC</td><td class="num">85</td><td><span class="tier t2">T2</span></td></tr><tr><td class="rk">6</td><td class="tk">TSM</td><td>Taiwan Semiconductor Manufacturing Company Limited</td><td class="num">85</td><td><span class="tier t2">T2</span></td></tr><tr><td class="rk">7</td><td class="tk">GOOG</td><td>ALPHABET INC-CL C</td><td class="num">85</td><td><span class="tier t2">T2</span></td></tr><tr><td class="rk">8</td><td class="tk">GOOGL</td><td>ALPHABET INC-CL A</td><td class="num">85</td><td><span class="tier t1">T1</span></td></tr><tr><td class="rk">9</td><td class="tk">MU</td><td>MICRON TECHNOLOGY INC</td><td class="num">80</td><td><span class="tier t1">T1</span></td></tr><tr><td class="rk">10</td><td class="tk">ANET</td><td>ARISTA NETWORKS INC</td><td class="num">80</td><td><span class="tier t2">T2</span></td></tr><tr><td class="rk">11</td><td class="tk">META</td><td>FACEBOOK INC-A / META</td><td class="num">80</td><td><span class="tier t2">T2</span></td></tr><tr><td class="rk">12</td><td class="tk">MSFT</td><td>MICROSOFT CORP</td><td class="num">80</td><td><span class="tier t2">T2</span></td></tr><tr><td class="rk">13</td><td class="tk">AMZN</td><td>AMAZON.COM INC</td><td class="num">75</td><td><span class="tier t1">T1</span></td></tr><tr><td class="rk">14</td><td class="tk">CRM</td><td>SALESFORCE.COM INC</td><td class="num">70</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">15</td><td class="tk">NOW</td><td>SERVICENOW INC</td><td class="num">70</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">16</td><td class="tk">SNOW</td><td>Snowflake Inc Class A</td><td class="num">70</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">17</td><td class="tk">AMAT</td><td>APPLIED MATERIALS INC</td><td class="num">70</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">18</td><td class="tk">LRCX</td><td>LAM RESEARCH CORP</td><td class="num">70</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">19</td><td class="tk">TSLA</td><td>TESLA MOTORS INC</td><td class="num">70</td><td><span class="tier t1">T1</span></td></tr><tr><td class="rk">20</td><td class="tk">ADBE</td><td>ADOBE SYSTEMS INC</td><td class="num">65</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">21</td><td class="tk">ORCL</td><td>ORACLE CORP</td><td class="num">65</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">22</td><td class="tk">DELL</td><td>DELL TECHNOLOGIES -C</td><td class="num">65</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">23</td><td class="tk">MDB</td><td>MONGODB INC</td><td class="num">60</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">24</td><td class="tk">PANW</td><td>PALO ALTO NETWORKS INC</td><td class="num">60</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">25</td><td class="tk">QCOM</td><td>QUALCOMM INC</td><td class="num">60</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">26</td><td class="tk">INTC</td><td>INTEL CORP</td><td class="num">55</td><td><span class="tier t2">T2</span></td></tr><tr><td class="rk">27</td><td class="tk">AAPL</td><td>APPLE INC</td><td class="num">55</td><td><span class="tier t1">T1</span></td></tr><tr><td class="rk">28</td><td class="tk">TXN</td><td>TEXAS INSTRUMENTS INC</td><td class="num">40</td><td><span class="tier t3">T3</span></td></tr></tbody></table></div><div class="card"><h3>Market cap <small>company size</small> <span class="src srcN" title="Live market data from Nasdaq's API, as-of Jun 25, 2026">Nasdaq · Jun 25, 2026</span></h3>
+  <table><thead><tr><th>#</th><th>Ticker</th><th>Company</th><th class="num">Value</th><th>Tier</th></tr></thead><tbody><tr><td class="rk">1</td><td class="tk">NVDA</td><td>NVIDIA CORP</td><td class="num">$4.7T</td><td><span class="tier t1">T1</span></td></tr><tr><td class="rk">2</td><td class="tk">GOOGL</td><td>ALPHABET INC-CL A</td><td class="num">$4.2T</td><td><span class="tier t1">T1</span></td></tr><tr><td class="rk">3</td><td class="tk">GOOG</td><td>ALPHABET INC-CL C</td><td class="num">$4.1T</td><td><span class="tier t2">T2</span></td></tr><tr><td class="rk">4</td><td class="tk">AAPL</td><td>APPLE INC</td><td class="num">$4.0T</td><td><span class="tier t1">T1</span></td></tr><tr><td class="rk">5</td><td class="tk">MSFT</td><td>MICROSOFT CORP</td><td class="num">$2.6T</td><td><span class="tier t2">T2</span></td></tr><tr><td class="rk">6</td><td class="tk">AMZN</td><td>AMAZON.COM INC</td><td class="num">$2.4T</td><td><span class="tier t1">T1</span></td></tr><tr><td class="rk">7</td><td class="tk">TSM</td><td>Taiwan Semiconductor Manufacturing Company Limited</td><td class="num">$2.3T</td><td><span class="tier t2">T2</span></td></tr><tr><td class="rk">8</td><td class="tk">AVGO</td><td>Broadcom Limited</td><td class="num">$1.8T</td><td><span class="tier t1">T1</span></td></tr><tr><td class="rk">9</td><td class="tk">TSLA</td><td>TESLA MOTORS INC</td><td class="num">$1.4T</td><td><span class="tier t1">T1</span></td></tr><tr><td class="rk">10</td><td class="tk">META</td><td>FACEBOOK INC-A / META</td><td class="num">$1.4T</td><td><span class="tier t2">T2</span></td></tr><tr><td class="rk">11</td><td class="tk">MU</td><td>MICRON TECHNOLOGY INC</td><td class="num">$1.4T</td><td><span class="tier t1">T1</span></td></tr><tr><td class="rk">12</td><td class="tk">AMD</td><td>ADVANCED MICRO DEVICES</td><td class="num">$868B</td><td><span class="tier t1">T1</span></td></tr><tr><td class="rk">13</td><td class="tk">INTC</td><td>INTEL CORP</td><td class="num">$668B</td><td><span class="tier t2">T2</span></td></tr><tr><td class="rk">14</td><td class="tk">AMAT</td><td>APPLIED MATERIALS INC</td><td class="num">$530B</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">15</td><td class="tk">LRCX</td><td>LAM RESEARCH CORP</td><td class="num">$503B</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">16</td><td class="tk">ORCL</td><td>ORACLE CORP</td><td class="num">$439B</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">17</td><td class="tk">TXN</td><td>TEXAS INSTRUMENTS INC</td><td class="num">$284B</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">18</td><td class="tk">DELL</td><td>DELL TECHNOLOGIES -C</td><td class="num">$265B</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">19</td><td class="tk">PLTR</td><td>Palantir Tech Inc A</td><td class="num">$257B</td><td><span class="tier t2">T2</span></td></tr><tr><td class="rk">20</td><td class="tk">MRVL</td><td>MARVELL TECHNOLOGY INC</td><td class="num">$246B</td><td><span class="tier t2">T2</span></td></tr><tr><td class="rk">21</td><td class="tk">PANW</td><td>PALO ALTO NETWORKS INC</td><td class="num">$239B</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">22</td><td class="tk">QCOM</td><td>QUALCOMM INC</td><td class="num">$216B</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">23</td><td class="tk">ANET</td><td>ARISTA NETWORKS INC</td><td class="num">$208B</td><td><span class="tier t2">T2</span></td></tr><tr><td class="rk">24</td><td class="tk">CRM</td><td>SALESFORCE.COM INC</td><td class="num">$123B</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">25</td><td class="tk">NOW</td><td>SERVICENOW INC</td><td class="num">$92B</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">26</td><td class="tk">SNOW</td><td>Snowflake Inc Class A</td><td class="num">$79B</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">27</td><td class="tk">ADBE</td><td>ADOBE SYSTEMS INC</td><td class="num">$77B</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">28</td><td class="tk">MDB</td><td>MONGODB INC</td><td class="num">$24B</td><td><span class="tier t3">T3</span></td></tr></tbody></table></div><div class="card"><h3>Options / retail buzz <small>speculative interest</small> <span class="src srcE" title="Our editorial estimate — a qualitative lens, not a sourced financial figure">editorial estimate</span></h3>
+  <table><thead><tr><th>#</th><th>Ticker</th><th>Company</th><th class="num">Score</th><th>Tier</th></tr></thead><tbody><tr><td class="rk">1</td><td class="tk">TSLA</td><td>TESLA MOTORS INC</td><td class="num">100</td><td><span class="tier t1">T1</span></td></tr><tr><td class="rk">2</td><td class="tk">NVDA</td><td>NVIDIA CORP</td><td class="num">98</td><td><span class="tier t1">T1</span></td></tr><tr><td class="rk">3</td><td class="tk">PLTR</td><td>Palantir Tech Inc A</td><td class="num">95</td><td><span class="tier t2">T2</span></td></tr><tr><td class="rk">4</td><td class="tk">AMD</td><td>ADVANCED MICRO DEVICES</td><td class="num">85</td><td><span class="tier t1">T1</span></td></tr><tr><td class="rk">5</td><td class="tk">AAPL</td><td>APPLE INC</td><td class="num">80</td><td><span class="tier t1">T1</span></td></tr><tr><td class="rk">6</td><td class="tk">INTC</td><td>INTEL CORP</td><td class="num">70</td><td><span class="tier t2">T2</span></td></tr><tr><td class="rk">7</td><td class="tk">AMZN</td><td>AMAZON.COM INC</td><td class="num">70</td><td><span class="tier t1">T1</span></td></tr><tr><td class="rk">8</td><td class="tk">META</td><td>FACEBOOK INC-A / META</td><td class="num">65</td><td><span class="tier t2">T2</span></td></tr><tr><td class="rk">9</td><td class="tk">AVGO</td><td>Broadcom Limited</td><td class="num">60</td><td><span class="tier t1">T1</span></td></tr><tr><td class="rk">10</td><td class="tk">MU</td><td>MICRON TECHNOLOGY INC</td><td class="num">60</td><td><span class="tier t1">T1</span></td></tr><tr><td class="rk">11</td><td class="tk">MSFT</td><td>MICROSOFT CORP</td><td class="num">60</td><td><span class="tier t2">T2</span></td></tr><tr><td class="rk">12</td><td class="tk">GOOGL</td><td>ALPHABET INC-CL A</td><td class="num">58</td><td><span class="tier t1">T1</span></td></tr><tr><td class="rk">13</td><td class="tk">ORCL</td><td>ORACLE CORP</td><td class="num">55</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">14</td><td class="tk">SNOW</td><td>Snowflake Inc Class A</td><td class="num">55</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">15</td><td class="tk">MRVL</td><td>MARVELL TECHNOLOGY INC</td><td class="num">55</td><td><span class="tier t2">T2</span></td></tr><tr><td class="rk">16</td><td class="tk">DELL</td><td>DELL TECHNOLOGIES -C</td><td class="num">55</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">17</td><td class="tk">GOOG</td><td>ALPHABET INC-CL C</td><td class="num">52</td><td><span class="tier t2">T2</span></td></tr><tr><td class="rk">18</td><td class="tk">CRM</td><td>SALESFORCE.COM INC</td><td class="num">50</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">19</td><td class="tk">MDB</td><td>MONGODB INC</td><td class="num">50</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">20</td><td class="tk">TSM</td><td>Taiwan Semiconductor Manufacturing Company Limited</td><td class="num">50</td><td><span class="tier t2">T2</span></td></tr><tr><td class="rk">21</td><td class="tk">ANET</td><td>ARISTA NETWORKS INC</td><td class="num">50</td><td><span class="tier t2">T2</span></td></tr><tr><td class="rk">22</td><td class="tk">ADBE</td><td>ADOBE SYSTEMS INC</td><td class="num">48</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">23</td><td class="tk">NOW</td><td>SERVICENOW INC</td><td class="num">45</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">24</td><td class="tk">PANW</td><td>PALO ALTO NETWORKS INC</td><td class="num">45</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">25</td><td class="tk">QCOM</td><td>QUALCOMM INC</td><td class="num">45</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">26</td><td class="tk">AMAT</td><td>APPLIED MATERIALS INC</td><td class="num">40</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">27</td><td class="tk">LRCX</td><td>LAM RESEARCH CORP</td><td class="num">40</td><td><span class="tier t3">T3</span></td></tr><tr><td class="rk">28</td><td class="tk">TXN</td><td>TEXAS INSTRUMENTS INC</td><td class="num">35</td><td><span class="tier t3">T3</span></td></tr></tbody></table></div></div>
+
+<h2>Downloads <small>5-minute OHLCV · bid + ask + mid · CSV (zipped)</small></h2>
+<p class="meta">Each <code>.zip</code> contains merged + bid-only + ask-only CSVs, a README and a data dictionary. <code>.gz</code> is the merged CSV alone, gzipped, for analysts. Hover a button for its SHA-256.</p>
+<div class="tscroll"><table style="min-width:680px"><thead><tr><th>Ticker</th><th>Company / AI thesis</th><th>Category</th><th class="num">Bars</th><th>Coverage</th><th>Mid trend</th><th>Download</th></tr></thead>
+<tbody><tr>
+  <td class="tk">ADBE</td>
+  <td>ADOBE SYSTEMS INC<div class="thesis">Firefly generative-AI creative suite.</div></td>
+  <td class="cat">AI / enterprise software</td>
+  <td class="num">178,002</td>
+  <td class="rng">2017-05-11<br>→ 2026-06-25</td>
+  <td><svg class="spark" viewBox="0 0 120 30" width="120" height="30" preserveAspectRatio="none"><polyline points="0.0,30.0 2.5,29.3 5.0,29.5 7.5,27.7 10.0,27.0 12.5,25.1 15.0,24.3 17.5,23.3 20.0,24.3 22.5,24.1 25.0,23.0 27.5,22.3 30.0,21.6 32.5,22.7 35.0,19.1 37.5,21.4 40.0,16.9 42.5,13.2 45.0,10.8 47.5,10.6 50.0,12.1 52.5,11.4 55.0,4.6 57.5,2.3 60.0,0.0 62.5,9.7 65.0,14.6 67.5,16.6 70.0,17.1 72.5,20.7 75.0,18.8 77.5,16.9 80.0,13.9 82.5,9.2 85.0,8.3 87.5,6.0 90.0,6.9 92.5,11.2 95.0,8.1 97.5,10.0 100.0,11.4 102.5,13.4 105.0,16.6 107.5,17.5 110.0,17.6 112.5,20.1 115.0,22.9 117.5,23.8 120.0,26.8" fill="none" stroke="#3fb950" stroke-width="1.5"/></svg></td>
+  <td class="dls">
+    <a class="btn" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/ADBE/ADBE-m5.zip" title="sha256 335ef6382505">CSV .zip</a>
+    <a class="btn ghost" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/ADBE/ADBE-m5-merged.csv.gz" title="merged sha256 2cebe8f01641">merged .gz</a>
+  </td></tr><tr>
+  <td class="tk">CRM</td>
+  <td>SALESFORCE.COM INC<div class="thesis">Agentforce / Einstein enterprise AI agents.</div></td>
+  <td class="cat">AI / enterprise software</td>
+  <td class="num">177,996</td>
+  <td class="rng">2017-05-11<br>→ 2026-06-25</td>
+  <td><svg class="spark" viewBox="0 0 120 30" width="120" height="30" preserveAspectRatio="none"><polyline points="0.0,30.0 2.5,29.7 5.0,29.4 7.5,28.4 10.0,27.6 12.5,26.0 15.0,24.7 17.5,23.2 20.0,25.0 22.5,23.4 25.0,22.1 27.5,23.0 30.0,23.3 32.5,22.5 35.0,20.0 37.5,25.6 40.0,20.2 42.5,17.3 45.0,10.6 47.5,14.7 50.0,15.6 52.5,15.8 55.0,13.6 57.5,11.0 60.0,6.9 62.5,15.6 65.0,18.9 67.5,19.4 70.0,22.7 72.5,23.3 75.0,23.5 77.5,18.2 80.0,16.1 82.5,16.5 85.0,17.4 87.5,11.4 90.0,6.0 92.5,8.1 95.0,11.0 97.5,8.3 100.0,0.0 102.5,5.8 105.0,9.3 107.5,10.9 110.0,12.6 112.5,14.7 115.0,18.8 117.5,19.3 120.0,23.1" fill="none" stroke="#3fb950" stroke-width="1.5"/></svg></td>
+  <td class="dls">
+    <a class="btn" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/CRM/CRM-m5.zip" title="sha256 3ae366116d34">CSV .zip</a>
+    <a class="btn ghost" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/CRM/CRM-m5-merged.csv.gz" title="merged sha256 871287fdb5e0">merged .gz</a>
+  </td></tr><tr>
+  <td class="tk">MDB</td>
+  <td>MONGODB INC<div class="thesis">Vector search backing RAG/AI applications.</div></td>
+  <td class="cat">AI / enterprise software</td>
+  <td class="num">79,946</td>
+  <td class="rng">2022-05-13<br>→ 2026-06-25</td>
+  <td><svg class="spark" viewBox="0 0 120 30" width="120" height="30" preserveAspectRatio="none"><polyline points="0.0,18.0 2.5,20.5 5.0,16.7 7.5,8.9 10.0,23.9 12.5,26.6 15.0,29.3 17.5,26.4 20.0,25.2 22.5,23.9 25.0,23.7 27.5,23.9 30.0,17.4 32.5,6.0 35.0,3.7 37.5,8.3 40.0,11.8 42.5,11.7 45.0,3.4 47.5,2.6 50.0,3.4 52.5,0.0 55.0,10.6 57.5,8.0 60.0,21.2 62.5,18.4 65.0,23.0 67.5,16.0 70.0,18.7 72.5,18.5 75.0,10.1 77.5,21.1 80.0,16.5 82.5,27.3 85.0,30.0 87.5,26.4 90.0,25.1 92.5,23.6 95.0,23.0 97.5,12.2 100.0,13.4 102.5,10.1 105.0,2.7 107.5,5.5 110.0,13.3 112.5,19.4 115.0,19.6 117.5,13.6 120.0,15.6" fill="none" stroke="#3fb950" stroke-width="1.5"/></svg></td>
+  <td class="dls">
+    <a class="btn" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/MDB/MDB-m5.zip" title="sha256 f8d711f178dd">CSV .zip</a>
+    <a class="btn ghost" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/MDB/MDB-m5-merged.csv.gz" title="merged sha256 976de2351687">merged .gz</a>
+  </td></tr><tr>
+  <td class="tk">NOW</td>
+  <td>SERVICENOW INC<div class="thesis">Now Assist generative-AI workflow automation.</div></td>
+  <td class="cat">AI / enterprise software</td>
+  <td class="num">78,616</td>
+  <td class="rng">2022-05-13<br>→ 2026-06-25</td>
+  <td><svg class="spark" viewBox="0 0 120 30" width="120" height="30" preserveAspectRatio="none"><polyline points="0.0,26.5 2.5,25.2 5.0,25.1 7.5,26.6 10.0,28.1 12.5,30.0 15.0,28.8 17.5,28.7 20.0,26.0 22.5,27.6 25.0,25.7 27.5,26.2 30.0,23.2 32.5,22.2 35.0,22.5 37.5,20.6 40.0,22.4 42.5,19.9 45.0,16.7 47.5,16.2 50.0,13.1 52.5,13.6 55.0,14.4 57.5,16.0 60.0,16.1 62.5,14.6 65.0,12.5 67.5,10.0 70.0,7.9 72.5,4.3 75.0,0.0 77.5,3.4 80.0,6.6 82.5,11.6 85.0,13.9 87.5,4.6 90.0,6.0 92.5,7.0 95.0,10.1 97.5,7.7 100.0,9.4 102.5,11.5 105.0,14.2 107.5,18.2 110.0,23.9 112.5,24.1 115.0,27.0 117.5,24.2 120.0,26.4" fill="none" stroke="#3fb950" stroke-width="1.5"/></svg></td>
+  <td class="dls">
+    <a class="btn" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/NOW/NOW-m5.zip" title="sha256 b36646909c92">CSV .zip</a>
+    <a class="btn ghost" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/NOW/NOW-m5-merged.csv.gz" title="merged sha256 835d3fc35c40">merged .gz</a>
+  </td></tr><tr>
+  <td class="tk">ORCL</td>
+  <td>ORACLE CORP<div class="thesis">OCI GPU cloud build-out for AI training.</div></td>
+  <td class="cat">AI / enterprise software</td>
+  <td class="num">168,467</td>
+  <td class="rng">2017-11-02<br>→ 2026-06-25</td>
+  <td><svg class="spark" viewBox="0 0 120 30" width="120" height="30" preserveAspectRatio="none"><polyline points="0.0,29.5 2.5,29.7 5.0,29.2 7.5,30.0 10.0,29.7 12.5,29.3 15.0,29.7 17.5,29.5 20.0,29.0 22.5,29.3 25.0,29.1 27.5,29.0 30.0,29.1 32.5,29.9 35.0,29.3 37.5,28.9 40.0,28.3 42.5,28.8 45.0,28.1 47.5,26.6 50.0,25.6 52.5,24.6 55.0,23.8 57.5,24.4 60.0,26.3 62.5,26.6 65.0,26.8 67.5,26.3 70.0,26.1 72.5,25.0 75.0,24.7 77.5,22.6 80.0,21.5 82.5,22.0 85.0,23.0 87.5,22.3 90.0,21.5 92.5,18.1 95.0,18.3 97.5,14.4 100.0,16.0 102.5,17.0 105.0,15.7 107.5,3.4 110.0,0.0 112.5,8.3 115.0,15.7 117.5,12.8 120.0,16.8" fill="none" stroke="#3fb950" stroke-width="1.5"/></svg></td>
+  <td class="dls">
+    <a class="btn" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/ORCL/ORCL-m5.zip" title="sha256 df8e5dd7309f">CSV .zip</a>
+    <a class="btn ghost" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/ORCL/ORCL-m5-merged.csv.gz" title="merged sha256 14d6b2e8861e">merged .gz</a>
+  </td></tr><tr>
+  <td class="tk">PANW</td>
+  <td>PALO ALTO NETWORKS INC<div class="thesis">AI-driven security (Precision AI).</div></td>
+  <td class="cat">AI / enterprise software</td>
+  <td class="num">79,722</td>
+  <td class="rng">2022-05-13<br>→ 2026-06-25</td>
+  <td><svg class="spark" viewBox="0 0 120 30" width="120" height="30" preserveAspectRatio="none"><polyline points="0.0,28.5 2.5,28.6 5.0,28.1 7.5,27.6 10.0,27.7 12.5,28.8 15.0,28.5 17.5,29.4 20.0,30.0 22.5,28.2 25.0,26.4 27.5,26.5 30.0,26.6 32.5,22.8 35.0,23.1 37.5,23.8 40.0,24.2 42.5,22.6 45.0,21.6 47.5,19.1 50.0,16.4 52.5,18.4 55.0,20.4 57.5,19.6 60.0,19.3 62.5,16.5 65.0,18.1 67.5,15.1 70.0,16.9 72.5,15.1 75.0,12.7 77.5,16.7 80.0,13.1 82.5,14.9 85.0,16.5 87.5,13.3 90.0,12.6 92.5,13.0 95.0,15.7 97.5,12.0 100.0,11.6 102.5,11.8 105.0,14.3 107.5,14.9 110.0,19.7 112.5,18.3 115.0,16.0 117.5,4.7 120.0,0.0" fill="none" stroke="#3fb950" stroke-width="1.5"/></svg></td>
+  <td class="dls">
+    <a class="btn" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/PANW/PANW-m5.zip" title="sha256 0ec117cc9e7a">CSV .zip</a>
+    <a class="btn ghost" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/PANW/PANW-m5-merged.csv.gz" title="merged sha256 ba905e6fd962">merged .gz</a>
+  </td></tr><tr>
+  <td class="tk">PLTR</td>
+  <td>Palantir Tech Inc A<div class="thesis">AIP — operational LLM platform for gov/enterprise.</div></td>
+  <td class="cat">AI / enterprise software</td>
+  <td class="num">113,252</td>
+  <td class="rng">2020-10-01<br>→ 2026-06-25</td>
+  <td><svg class="spark" viewBox="0 0 120 30" width="120" height="30" preserveAspectRatio="none"><polyline points="0.0,29.6 2.5,29.4 5.0,28.1 7.5,27.0 10.0,26.4 12.5,27.2 15.0,27.8 17.5,26.7 20.0,26.9 22.5,26.4 25.0,26.9 27.5,28.0 30.0,29.1 32.5,29.1 35.0,29.4 37.5,29.9 40.0,29.5 42.5,30.0 45.0,29.8 47.5,30.0 50.0,30.0 52.5,29.9 55.0,29.9 57.5,28.6 60.0,28.5 62.5,28.6 65.0,28.5 67.5,28.2 70.0,28.2 72.5,27.2 75.0,27.6 77.5,27.6 80.0,26.4 82.5,26.1 85.0,23.9 87.5,20.9 90.0,20.2 92.5,16.3 95.0,17.9 97.5,10.6 100.0,7.7 102.5,4.6 105.0,0.0 107.5,1.7 110.0,0.4 112.5,9.5 115.0,7.3 117.5,8.6 120.0,13.0" fill="none" stroke="#3fb950" stroke-width="1.5"/></svg></td>
+  <td class="dls">
+    <a class="btn" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/PLTR/PLTR-m5.zip" title="sha256 84bb57394387">CSV .zip</a>
+    <a class="btn ghost" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/PLTR/PLTR-m5-merged.csv.gz" title="merged sha256 0c38f145c27b">merged .gz</a>
+  </td></tr><tr>
+  <td class="tk">SNOW</td>
+  <td>Snowflake Inc Class A<div class="thesis">Cortex AI over enterprise data warehouses.</div></td>
+  <td class="cat">AI / enterprise software</td>
+  <td class="num">119,451</td>
+  <td class="rng">2020-09-22<br>→ 2026-06-25</td>
+  <td><svg class="spark" viewBox="0 0 120 30" width="120" height="30" preserveAspectRatio="none"><polyline points="0.0,17.8 2.5,15.7 5.0,15.4 7.5,13.9 10.0,6.9 12.5,11.5 15.0,11.2 17.5,17.1 20.0,18.3 22.5,16.8 25.0,12.9 27.5,10.1 30.0,0.0 32.5,9.6 35.0,11.8 37.5,20.1 40.0,26.8 42.5,24.7 45.0,25.4 47.5,23.2 50.0,26.8 52.5,27.1 55.0,25.5 57.5,26.7 60.0,25.0 62.5,22.4 65.0,25.4 67.5,24.6 70.0,22.4 72.5,22.0 75.0,24.4 77.5,26.3 80.0,27.5 82.5,28.2 85.0,30.0 87.5,29.4 90.0,22.5 92.5,22.4 95.0,25.4 97.5,24.3 100.0,19.8 102.5,19.8 105.0,18.7 107.5,13.0 110.0,18.4 112.5,24.9 115.0,24.5 117.5,25.6 120.0,18.0" fill="none" stroke="#f85149" stroke-width="1.5"/></svg></td>
+  <td class="dls">
+    <a class="btn" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/SNOW/SNOW-m5.zip" title="sha256 e2bd3ce0da7a">CSV .zip</a>
+    <a class="btn ghost" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/SNOW/SNOW-m5-merged.csv.gz" title="merged sha256 99cfa91b6728">merged .gz</a>
+  </td></tr><tr>
+  <td class="tk">AMAT</td>
+  <td>APPLIED MATERIALS INC<div class="thesis">Wafer-fab equipment enabling advanced AI nodes.</div></td>
+  <td class="cat">AI compute / semiconductors</td>
+  <td class="num">177,740</td>
+  <td class="rng">2017-05-11<br>→ 2026-06-25</td>
+  <td><svg class="spark" viewBox="0 0 120 30" width="120" height="30" preserveAspectRatio="none"><polyline points="0.0,29.5 2.5,29.3 5.0,29.4 7.5,29.1 10.0,29.2 12.5,29.1 15.0,29.4 17.5,29.6 20.0,30.0 22.5,29.7 25.0,29.5 27.5,29.6 30.0,29.3 32.5,28.8 35.0,28.6 37.5,29.4 40.0,29.0 42.5,28.5 45.0,28.6 47.5,27.3 50.0,26.0 52.5,25.2 55.0,25.0 57.5,25.0 60.0,24.4 62.5,24.9 65.0,25.9 67.5,27.0 70.0,27.0 72.5,27.1 75.0,26.3 77.5,25.8 80.0,25.1 82.5,24.8 85.0,25.0 87.5,23.7 90.0,21.5 92.5,21.2 95.0,21.4 97.5,21.8 100.0,23.4 102.5,23.5 105.0,24.0 107.5,22.0 110.0,22.3 112.5,19.7 115.0,15.9 117.5,12.6 120.0,0.0" fill="none" stroke="#3fb950" stroke-width="1.5"/></svg></td>
+  <td class="dls">
+    <a class="btn" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/AMAT/AMAT-m5.zip" title="sha256 357b8b5e9675">CSV .zip</a>
+    <a class="btn ghost" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/AMAT/AMAT-m5-merged.csv.gz" title="merged sha256 d4d0f639f8df">merged .gz</a>
+  </td></tr><tr>
+  <td class="tk">AMD</td>
+  <td>ADVANCED MICRO DEVICES<div class="thesis">MI-series data-center GPUs; #2 AI accelerator.</div></td>
+  <td class="cat">AI compute / semiconductors</td>
+  <td class="num">168,518</td>
+  <td class="rng">2017-11-02<br>→ 2026-06-25</td>
+  <td><svg class="spark" viewBox="0 0 120 30" width="120" height="30" preserveAspectRatio="none"><polyline points="0.0,30.0 2.5,29.9 5.0,30.0 7.5,29.9 10.0,29.7 12.5,28.7 15.0,29.4 17.5,29.3 20.0,29.0 22.5,28.8 25.0,28.8 27.5,28.7 30.0,27.8 32.5,28.1 35.0,27.4 37.5,27.4 40.0,26.2 42.5,25.7 45.0,25.6 47.5,25.9 50.0,26.0 52.5,24.3 55.0,24.1 57.5,22.5 60.0,23.6 62.5,25.5 65.0,26.0 67.5,25.6 70.0,26.4 72.5,26.7 75.0,24.9 77.5,23.5 80.0,23.7 82.5,24.5 85.0,22.6 87.5,21.0 90.0,21.8 92.5,21.1 95.0,22.6 97.5,22.4 100.0,23.9 102.5,24.4 105.0,24.0 107.5,20.1 110.0,20.8 112.5,17.8 115.0,18.5 117.5,14.1 120.0,0.0" fill="none" stroke="#3fb950" stroke-width="1.5"/></svg></td>
+  <td class="dls">
+    <a class="btn" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/AMD/AMD-m5.zip" title="sha256 b677e9ffa1be">CSV .zip</a>
+    <a class="btn ghost" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/AMD/AMD-m5-merged.csv.gz" title="merged sha256 8f11db168c83">merged .gz</a>
+  </td></tr><tr>
+  <td class="tk">AVGO</td>
+  <td>Broadcom Limited<div class="thesis">Custom AI ASICs + AI networking silicon.</div></td>
+  <td class="cat">AI compute / semiconductors</td>
+  <td class="num">181,807</td>
+  <td class="rng">2017-03-01<br>→ 2026-06-25</td>
+  <td><svg class="spark" viewBox="0 0 120 30" width="120" height="30" preserveAspectRatio="none"><polyline points="0.0,30.0 2.5,29.9 5.0,29.7 7.5,29.8 10.0,29.6 12.5,29.7 15.0,29.9 17.5,29.7 20.0,29.8 22.5,29.9 25.0,29.5 27.5,29.1 30.0,29.4 32.5,29.4 35.0,29.2 37.5,29.2 40.0,29.6 42.5,29.2 45.0,29.0 47.5,28.9 50.0,28.0 52.5,28.0 55.0,27.9 57.5,27.8 60.0,27.6 62.5,26.4 65.0,27.1 67.5,27.5 70.0,27.4 72.5,28.2 75.0,27.3 77.5,27.0 80.0,26.7 82.5,24.5 85.0,25.1 87.5,23.8 90.0,22.0 92.5,21.8 95.0,18.0 97.5,18.0 100.0,18.7 102.5,13.0 105.0,16.7 107.5,9.8 110.0,2.9 112.5,3.8 115.0,7.5 117.5,0.0 120.0,1.3" fill="none" stroke="#3fb950" stroke-width="1.5"/></svg></td>
+  <td class="dls">
+    <a class="btn" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/AVGO/AVGO-m5.zip" title="sha256 0579428205bc">CSV .zip</a>
+    <a class="btn ghost" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/AVGO/AVGO-m5-merged.csv.gz" title="merged sha256 411343ac83f8">merged .gz</a>
+  </td></tr><tr>
+  <td class="tk">INTC</td>
+  <td>INTEL CORP<div class="thesis">Gaudi accelerators + AI-PC CPUs; foundry ambitions.</div></td>
+  <td class="cat">AI compute / semiconductors</td>
+  <td class="num">181,747</td>
+  <td class="rng">2017-03-01<br>→ 2026-06-25</td>
+  <td><svg class="spark" viewBox="0 0 120 30" width="120" height="30" preserveAspectRatio="none"><polyline points="0.0,26.1 2.5,25.9 5.0,26.4 7.5,25.6 10.0,24.1 12.5,23.4 15.0,21.8 17.5,21.7 20.0,23.4 22.5,22.9 25.0,22.7 27.5,20.0 30.0,22.8 32.5,21.7 35.0,20.1 37.5,17.8 40.0,19.8 42.5,19.7 45.0,22.4 47.5,23.4 50.0,20.1 52.5,18.4 55.0,20.3 57.5,21.4 60.0,22.4 62.5,21.2 65.0,23.8 67.5,24.6 70.0,25.9 72.5,28.9 75.0,28.5 77.5,28.6 80.0,27.9 82.5,26.7 85.0,26.3 87.5,23.9 90.0,24.2 92.5,27.5 95.0,26.3 97.5,29.7 100.0,29.3 102.5,29.2 105.0,30.0 107.5,29.9 110.0,29.1 112.5,26.7 115.0,22.9 117.5,17.6 120.0,0.0" fill="none" stroke="#3fb950" stroke-width="1.5"/></svg></td>
+  <td class="dls">
+    <a class="btn" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/INTC/INTC-m5.zip" title="sha256 c6e2fc38d6bd">CSV .zip</a>
+    <a class="btn ghost" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/INTC/INTC-m5-merged.csv.gz" title="merged sha256 56e1c3037b6a">merged .gz</a>
+  </td></tr><tr>
+  <td class="tk">LRCX</td>
+  <td>LAM RESEARCH CORP<div class="thesis">Etch/deposition tools for leading-edge AI chips.</div></td>
+  <td class="cat">AI compute / semiconductors</td>
+  <td class="num">167,499</td>
+  <td class="rng">2017-11-02<br>→ 2026-06-25</td>
+  <td><svg class="spark" viewBox="0 0 120 30" width="120" height="30" preserveAspectRatio="none"><polyline points="0.0,29.6 2.5,29.6 5.0,29.4 7.5,29.6 10.0,29.8 12.5,30.0 15.0,30.0 17.5,29.8 20.0,29.7 22.5,29.8 25.0,29.5 27.5,29.3 30.0,28.9 32.5,28.8 35.0,29.2 37.5,28.4 40.0,28.8 42.5,27.7 45.0,26.7 47.5,26.7 50.0,26.1 52.5,26.1 55.0,26.8 57.5,25.7 60.0,26.5 62.5,27.5 65.0,27.7 67.5,27.7 70.0,28.1 72.5,27.6 75.0,27.2 77.5,26.5 80.0,26.1 82.5,26.2 85.0,25.6 87.5,24.3 90.0,24.3 92.5,22.8 95.0,25.1 97.5,25.0 100.0,24.8 102.5,25.0 105.0,24.5 107.5,23.6 110.0,19.2 112.5,18.1 115.0,13.0 117.5,10.5 120.0,0.0" fill="none" stroke="#3fb950" stroke-width="1.5"/></svg></td>
+  <td class="dls">
+    <a class="btn" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/LRCX/LRCX-m5.zip" title="sha256 2a4bef37fb06">CSV .zip</a>
+    <a class="btn ghost" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/LRCX/LRCX-m5-merged.csv.gz" title="merged sha256 a18d1dc4e83a">merged .gz</a>
+  </td></tr><tr>
+  <td class="tk">MRVL</td>
+  <td>MARVELL TECHNOLOGY INC<div class="thesis">Custom AI silicon + data-center interconnect.</div></td>
+  <td class="cat">AI compute / semiconductors</td>
+  <td class="num">80,105</td>
+  <td class="rng">2022-05-13<br>→ 2026-06-25</td>
+  <td><svg class="spark" viewBox="0 0 120 30" width="120" height="30" preserveAspectRatio="none"><polyline points="0.0,27.9 2.5,28.8 5.0,28.8 7.5,28.0 10.0,28.9 12.5,30.0 15.0,29.2 17.5,30.0 20.0,29.9 22.5,29.4 25.0,29.7 27.5,30.0 30.0,28.9 32.5,27.6 35.0,26.9 37.5,27.6 40.0,28.3 42.5,28.9 45.0,27.8 47.5,27.2 50.0,26.1 52.5,26.0 55.0,25.8 57.5,26.8 60.0,26.1 62.5,25.7 65.0,27.6 67.5,25.9 70.0,25.6 72.5,24.2 75.0,20.4 77.5,20.2 80.0,20.7 82.5,26.1 85.0,28.3 87.5,26.6 90.0,26.3 92.5,25.9 95.0,25.2 97.5,26.2 100.0,23.7 102.5,24.0 105.0,24.5 107.5,24.6 110.0,25.0 112.5,23.2 115.0,14.2 117.5,8.5 120.0,0.0" fill="none" stroke="#3fb950" stroke-width="1.5"/></svg></td>
+  <td class="dls">
+    <a class="btn" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/MRVL/MRVL-m5.zip" title="sha256 ae3c85ff8e1a">CSV .zip</a>
+    <a class="btn ghost" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/MRVL/MRVL-m5-merged.csv.gz" title="merged sha256 21382dd1fe3d">merged .gz</a>
+  </td></tr><tr>
+  <td class="tk">MU</td>
+  <td>MICRON TECHNOLOGY INC<div class="thesis">HBM memory — the bottleneck for AI accelerators.</div></td>
+  <td class="cat">AI compute / semiconductors</td>
+  <td class="num">168,517</td>
+  <td class="rng">2017-11-02<br>→ 2026-06-25</td>
+  <td><svg class="spark" viewBox="0 0 120 30" width="120" height="30" preserveAspectRatio="none"><polyline points="0.0,29.8 2.5,29.8 5.0,29.4 7.5,29.5 10.0,29.5 12.5,29.7 15.0,29.9 17.5,29.9 20.0,29.8 22.5,30.0 25.0,29.7 27.5,29.6 30.0,29.5 32.5,29.7 35.0,29.7 37.5,29.6 40.0,29.6 42.5,29.3 45.0,28.9 47.5,28.5 50.0,28.9 52.5,29.1 55.0,29.2 57.5,28.6 60.0,28.6 62.5,29.1 65.0,29.4 67.5,29.4 70.0,29.3 72.5,29.4 75.0,29.3 77.5,29.1 80.0,29.1 82.5,29.1 85.0,28.9 87.5,28.8 90.0,28.1 92.5,27.5 95.0,28.6 97.5,28.2 100.0,28.4 102.5,28.3 105.0,28.5 107.5,28.1 110.0,26.0 112.5,24.7 115.0,20.4 117.5,19.5 120.0,0.0" fill="none" stroke="#3fb950" stroke-width="1.5"/></svg></td>
+  <td class="dls">
+    <a class="btn" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/MU/MU-m5.zip" title="sha256 b1cb9a40ebb8">CSV .zip</a>
+    <a class="btn ghost" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/MU/MU-m5-merged.csv.gz" title="merged sha256 1d2a60f00698">merged .gz</a>
+  </td></tr><tr>
+  <td class="tk">NVDA</td>
+  <td>NVIDIA CORP<div class="thesis">The dominant AI training/inference GPU supplier.</div></td>
+  <td class="cat">AI compute / semiconductors</td>
+  <td class="num">181,941</td>
+  <td class="rng">2017-03-01<br>→ 2026-06-25</td>
+  <td><svg class="spark" viewBox="0 0 120 30" width="120" height="30" preserveAspectRatio="none"><polyline points="0.0,30.0 2.5,30.0 5.0,29.8 7.5,29.7 10.0,29.7 12.5,29.4 15.0,29.5 17.5,29.4 20.0,29.3 22.5,29.8 25.0,29.8 27.5,29.7 30.0,29.8 32.5,29.7 35.0,29.6 37.5,29.4 40.0,29.4 42.5,29.0 45.0,28.4 47.5,28.4 50.0,28.3 52.5,28.5 55.0,27.7 57.5,27.3 60.0,26.9 62.5,25.8 65.0,27.1 67.5,27.8 70.0,27.5 72.5,28.6 75.0,27.9 77.5,26.8 80.0,26.0 82.5,23.6 85.0,23.5 87.5,23.2 90.0,18.4 92.5,17.3 95.0,10.6 97.5,12.5 100.0,9.0 102.5,9.8 105.0,14.0 107.5,6.1 110.0,3.1 112.5,2.3 115.0,3.5 117.5,0.0 120.0,0.4" fill="none" stroke="#3fb950" stroke-width="1.5"/></svg></td>
+  <td class="dls">
+    <a class="btn" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/NVDA/NVDA-m5.zip" title="sha256 a711450741ea">CSV .zip</a>
+    <a class="btn ghost" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/NVDA/NVDA-m5-merged.csv.gz" title="merged sha256 a4e83ab42d93">merged .gz</a>
+  </td></tr><tr>
+  <td class="tk">QCOM</td>
+  <td>QUALCOMM INC<div class="thesis">On-device / edge AI inference (NPU).</div></td>
+  <td class="cat">AI compute / semiconductors</td>
+  <td class="num">168,511</td>
+  <td class="rng">2017-11-02<br>→ 2026-06-25</td>
+  <td><svg class="spark" viewBox="0 0 120 30" width="120" height="30" preserveAspectRatio="none"><polyline points="0.0,29.3 2.5,27.2 5.0,28.2 7.5,28.6 10.0,28.4 12.5,26.0 15.0,28.8 17.5,30.0 20.0,28.8 22.5,26.2 25.0,25.0 27.5,24.6 30.0,23.0 32.5,25.8 35.0,24.6 37.5,22.4 40.0,19.0 42.5,12.5 45.0,10.3 47.5,13.8 50.0,14.5 52.5,12.0 55.0,15.5 57.5,6.7 60.0,8.1 62.5,13.5 65.0,14.7 67.5,15.0 70.0,16.9 72.5,17.6 75.0,16.4 77.5,18.6 80.0,17.0 82.5,18.9 85.0,14.2 87.5,11.5 90.0,9.3 92.5,2.4 95.0,9.1 97.5,9.1 100.0,9.2 102.5,10.8 105.0,12.0 107.5,12.0 110.0,7.9 112.5,7.4 115.0,13.3 117.5,14.2 120.0,0.0" fill="none" stroke="#3fb950" stroke-width="1.5"/></svg></td>
+  <td class="dls">
+    <a class="btn" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/QCOM/QCOM-m5.zip" title="sha256 8a25ded4a8eb">CSV .zip</a>
+    <a class="btn ghost" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/QCOM/QCOM-m5-merged.csv.gz" title="merged sha256 5e5671ac40ef">merged .gz</a>
+  </td></tr><tr>
+  <td class="tk">TSM</td>
+  <td>Taiwan Semiconductor Manufacturing Company Limited<div class="thesis">Foundry that fabricates virtually every AI chip.</div></td>
+  <td class="cat">AI compute / semiconductors</td>
+  <td class="num">163,753</td>
+  <td class="rng">2018-02-01<br>→ 2026-06-25</td>
+  <td><svg class="spark" viewBox="0 0 120 30" width="120" height="30" preserveAspectRatio="none"><polyline points="0.0,29.3 2.5,29.5 5.0,29.8 7.5,29.6 10.0,29.8 12.5,30.0 15.0,29.8 17.5,29.4 20.0,29.8 22.5,29.6 25.0,28.9 27.5,28.5 30.0,28.8 32.5,28.8 35.0,27.8 37.5,26.4 40.0,25.4 42.5,23.1 45.0,24.3 47.5,24.0 50.0,24.1 52.5,24.5 55.0,24.0 57.5,23.7 60.0,25.5 62.5,26.4 65.0,26.0 67.5,28.0 70.0,27.1 72.5,26.2 75.0,26.5 77.5,25.2 80.0,25.8 82.5,25.9 85.0,25.3 87.5,22.2 90.0,21.2 92.5,20.4 95.0,19.8 97.5,18.7 100.0,17.4 102.5,20.8 105.0,17.6 107.5,14.8 110.0,11.7 112.5,11.1 115.0,6.1 117.5,4.1 120.0,0.0" fill="none" stroke="#3fb950" stroke-width="1.5"/></svg></td>
+  <td class="dls">
+    <a class="btn" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/TSM/TSM-m5.zip" title="sha256 b04f5bcaf29a">CSV .zip</a>
+    <a class="btn ghost" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/TSM/TSM-m5-merged.csv.gz" title="merged sha256 d50a6f39b306">merged .gz</a>
+  </td></tr><tr>
+  <td class="tk">TXN</td>
+  <td>TEXAS INSTRUMENTS INC<div class="thesis">Analog/embedded silicon feeding AI hardware.</div></td>
+  <td class="cat">AI compute / semiconductors</td>
+  <td class="num">168,505</td>
+  <td class="rng">2017-11-02<br>→ 2026-06-25</td>
+  <td><svg class="spark" viewBox="0 0 120 30" width="120" height="30" preserveAspectRatio="none"><polyline points="0.0,30.0 2.5,28.0 5.0,28.1 7.5,28.0 10.0,27.6 12.5,28.5 15.0,29.7 17.5,29.0 20.0,27.5 22.5,27.9 25.0,26.0 27.5,26.7 30.0,25.5 32.5,28.6 35.0,27.9 37.5,24.9 40.0,24.6 42.5,21.8 45.0,20.0 47.5,16.6 50.0,17.6 52.5,17.4 55.0,16.3 57.5,17.6 60.0,19.9 62.5,20.0 65.0,21.9 67.5,19.8 70.0,18.5 72.5,19.8 75.0,18.8 77.5,19.3 80.0,19.9 82.5,21.7 85.0,21.4 87.5,21.0 90.0,19.0 92.5,16.2 95.0,15.2 97.5,15.3 100.0,15.9 102.5,18.6 105.0,18.3 107.5,18.2 110.0,18.2 112.5,18.3 115.0,12.2 117.5,11.0 120.0,0.0" fill="none" stroke="#3fb950" stroke-width="1.5"/></svg></td>
+  <td class="dls">
+    <a class="btn" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/TXN/TXN-m5.zip" title="sha256 6adc17ba90ba">CSV .zip</a>
+    <a class="btn ghost" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/TXN/TXN-m5-merged.csv.gz" title="merged sha256 583e486f5da9">merged .gz</a>
+  </td></tr><tr>
+  <td class="tk">ANET</td>
+  <td>ARISTA NETWORKS INC<div class="thesis">Ethernet switching fabric for AI clusters.</div></td>
+  <td class="cat">AI infrastructure / networking</td>
+  <td class="num">49,835</td>
+  <td class="rng">2022-05-12<br>→ 2024-11-29<br><span class="stale" title="Dukascopy discontinued this CFD feed after this date">⚠ feed ended</span></td>
+  <td><svg class="spark" viewBox="0 0 120 30" width="120" height="30" preserveAspectRatio="none"><polyline points="0.0,29.2 2.5,29.2 5.0,30.0 7.5,29.4 10.0,27.8 12.5,26.4 15.0,27.6 17.5,28.5 20.0,29.0 22.5,26.7 25.0,26.1 27.5,26.7 30.0,27.4 32.5,28.0 35.0,25.8 37.5,25.7 40.0,23.2 42.5,23.5 45.0,24.0 47.5,25.9 50.0,23.7 52.5,24.6 55.0,22.7 57.5,21.8 60.0,20.9 62.5,20.6 65.0,21.2 67.5,20.2 70.0,18.5 72.5,17.8 75.0,16.4 77.5,16.9 80.0,13.6 82.5,13.1 85.0,12.1 87.5,9.5 90.0,12.6 92.5,14.5 95.0,8.2 97.5,10.6 100.0,5.2 102.5,6.8 105.0,7.7 107.5,5.8 110.0,5.0 112.5,1.0 115.0,0.5 117.5,0.6 120.0,0.0" fill="none" stroke="#3fb950" stroke-width="1.5"/></svg></td>
+  <td class="dls">
+    <a class="btn" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/ANET/ANET-m5.zip" title="sha256 f4c66191017e">CSV .zip</a>
+    <a class="btn ghost" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/ANET/ANET-m5-merged.csv.gz" title="merged sha256 d439141247f7">merged .gz</a>
+  </td></tr><tr>
+  <td class="tk">DELL</td>
+  <td>DELL TECHNOLOGIES -C<div class="thesis">AI servers (GB200) + enterprise AI infra.</div></td>
+  <td class="cat">AI infrastructure / networking</td>
+  <td class="num">80,067</td>
+  <td class="rng">2022-05-12<br>→ 2026-06-25</td>
+  <td><svg class="spark" viewBox="0 0 120 30" width="120" height="30" preserveAspectRatio="none"><polyline points="0.0,29.2 2.5,29.0 5.0,29.2 7.5,28.8 10.0,29.8 12.5,30.0 15.0,29.3 17.5,29.6 20.0,29.6 22.5,29.4 25.0,29.6 27.5,29.3 30.0,29.0 32.5,28.6 35.0,28.4 37.5,28.3 40.0,27.2 42.5,27.4 45.0,26.8 47.5,26.6 50.0,25.9 52.5,23.1 55.0,23.3 57.5,23.1 60.0,22.0 62.5,21.6 65.0,24.9 67.5,24.1 70.0,23.2 72.5,22.2 75.0,22.6 77.5,23.1 80.0,23.8 82.5,25.4 85.0,25.8 87.5,23.8 90.0,23.9 92.5,22.8 95.0,21.6 97.5,22.2 100.0,20.6 102.5,22.7 105.0,22.7 107.5,23.6 110.0,23.1 112.5,18.5 115.0,15.2 117.5,8.3 120.0,0.0" fill="none" stroke="#3fb950" stroke-width="1.5"/></svg></td>
+  <td class="dls">
+    <a class="btn" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/DELL/DELL-m5.zip" title="sha256 d956479137d0">CSV .zip</a>
+    <a class="btn ghost" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/DELL/DELL-m5-merged.csv.gz" title="merged sha256 e9fff3e1f96c">merged .gz</a>
+  </td></tr><tr>
+  <td class="tk">AAPL</td>
+  <td>APPLE INC<div class="thesis">Apple Intelligence on-device AI.</div></td>
+  <td class="cat">Mega-cap AI platform</td>
+  <td class="num">182,032</td>
+  <td class="rng">2017-02-28<br>→ 2026-06-25</td>
+  <td><svg class="spark" viewBox="0 0 120 30" width="120" height="30" preserveAspectRatio="none"><polyline points="0.0,30.0 2.5,29.6 5.0,29.6 7.5,29.6 10.0,29.0 12.5,29.2 15.0,29.2 17.5,28.5 20.0,27.3 22.5,28.8 25.0,28.9 27.5,28.1 30.0,28.2 32.5,27.8 35.0,26.2 37.5,24.7 40.0,26.5 42.5,23.7 45.0,18.7 47.5,20.8 50.0,18.2 52.5,19.6 55.0,19.0 57.5,16.1 60.0,15.9 62.5,12.4 65.0,15.5 67.5,17.7 70.0,14.4 72.5,17.2 75.0,18.1 77.5,16.3 80.0,12.9 82.5,10.6 85.0,13.0 87.5,10.7 90.0,11.8 92.5,13.1 95.0,5.9 97.5,5.9 100.0,5.4 102.5,5.3 105.0,8.9 107.5,8.6 110.0,5.3 112.5,1.5 115.0,0.5 117.5,2.1 120.0,0.0" fill="none" stroke="#3fb950" stroke-width="1.5"/></svg></td>
+  <td class="dls">
+    <a class="btn" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/AAPL/AAPL-m5.zip" title="sha256 777fe40793f3">CSV .zip</a>
+    <a class="btn ghost" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/AAPL/AAPL-m5-merged.csv.gz" title="merged sha256 cc43e1bb65eb">merged .gz</a>
+  </td></tr><tr>
+  <td class="tk">AMZN</td>
+  <td>AMAZON.COM INC<div class="thesis">AWS Bedrock/Trainium; Anthropic backer.</div></td>
+  <td class="cat">Mega-cap AI platform</td>
+  <td class="num">182,176</td>
+  <td class="rng">2017-02-28<br>→ 2026-06-25</td>
+  <td><svg class="spark" viewBox="0 0 120 30" width="120" height="30" preserveAspectRatio="none"><polyline points="0.0,30.0 2.5,29.3 5.0,28.8 7.5,29.3 10.0,27.8 12.5,25.8 15.0,25.6 17.5,23.7 20.0,21.5 22.5,25.0 25.0,24.0 27.5,22.5 30.0,22.3 32.5,22.7 35.0,23.2 37.5,22.7 40.0,21.7 42.5,17.1 45.0,12.0 47.5,14.5 50.0,12.9 52.5,13.7 55.0,12.5 57.5,12.0 60.0,11.0 62.5,11.5 65.0,15.3 67.5,20.6 70.0,15.9 72.5,19.8 75.0,23.6 77.5,22.3 80.0,19.9 82.5,17.2 85.0,17.2 87.5,14.7 90.0,10.5 92.5,9.4 95.0,7.4 97.5,8.3 100.0,5.7 102.5,2.2 105.0,8.9 107.5,3.3 110.0,2.1 112.5,3.9 115.0,1.6 117.5,0.0 120.0,2.4" fill="none" stroke="#3fb950" stroke-width="1.5"/></svg></td>
+  <td class="dls">
+    <a class="btn" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/AMZN/AMZN-m5.zip" title="sha256 127480d22e90">CSV .zip</a>
+    <a class="btn ghost" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/AMZN/AMZN-m5-merged.csv.gz" title="merged sha256 7f94fadd843f">merged .gz</a>
+  </td></tr><tr>
+  <td class="tk">GOOG</td>
+  <td>ALPHABET INC-CL C<div class="thesis">Gemini, TPUs, DeepMind (Class C).</div></td>
+  <td class="cat">Mega-cap AI platform</td>
+  <td class="num">181,927</td>
+  <td class="rng">2017-03-01<br>→ 2026-06-25</td>
+  <td><svg class="spark" viewBox="0 0 120 30" width="120" height="30" preserveAspectRatio="none"><polyline points="0.0,30.0 2.5,29.5 5.0,29.3 7.5,29.5 10.0,29.1 12.5,28.8 15.0,28.9 17.5,28.5 20.0,28.3 22.5,29.0 25.0,28.6 27.5,28.0 30.0,28.8 32.5,28.1 35.0,27.7 37.5,26.9 40.0,28.2 42.5,27.0 45.0,26.2 47.5,25.9 50.0,25.4 52.5,24.0 55.0,21.9 57.5,20.3 60.0,20.3 62.5,19.7 65.0,21.5 67.5,23.1 70.0,22.3 72.5,24.3 75.0,25.2 77.5,24.8 80.0,22.4 82.5,22.0 85.0,20.8 87.5,20.7 90.0,19.7 92.5,17.5 95.0,15.2 97.5,17.8 100.0,17.1 102.5,15.5 105.0,18.1 107.5,16.4 110.0,9.2 112.5,4.5 115.0,0.8 117.5,0.7 120.0,0.0" fill="none" stroke="#3fb950" stroke-width="1.5"/></svg></td>
+  <td class="dls">
+    <a class="btn" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/GOOG/GOOG-m5.zip" title="sha256 c9a8d80db4e8">CSV .zip</a>
+    <a class="btn ghost" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/GOOG/GOOG-m5-merged.csv.gz" title="merged sha256 f68533ae03cf">merged .gz</a>
+  </td></tr><tr>
+  <td class="tk">GOOGL</td>
+  <td>ALPHABET INC-CL A<div class="thesis">Gemini, TPUs, DeepMind (Class A).</div></td>
+  <td class="cat">Mega-cap AI platform</td>
+  <td class="num">181,930</td>
+  <td class="rng">2017-03-01<br>→ 2026-06-25</td>
+  <td><svg class="spark" viewBox="0 0 120 30" width="120" height="30" preserveAspectRatio="none"><polyline points="0.0,30.0 2.5,29.5 5.0,29.3 7.5,29.6 10.0,29.2 12.5,28.9 15.0,29.0 17.5,28.5 20.0,28.4 22.5,29.1 25.0,28.7 27.5,28.1 30.0,28.9 32.5,28.2 35.0,27.8 37.5,27.0 40.0,28.3 42.5,27.1 45.0,26.3 47.5,26.0 50.0,25.6 52.5,24.2 55.0,22.3 57.5,20.5 60.0,20.5 62.5,19.8 65.0,21.7 67.5,23.1 70.0,22.5 72.5,24.4 75.0,25.4 77.5,24.9 80.0,22.6 82.5,22.1 85.0,21.0 87.5,21.0 90.0,19.9 92.5,17.7 95.0,15.5 97.5,18.0 100.0,17.4 102.5,15.8 105.0,18.4 107.5,16.7 110.0,9.4 112.5,4.2 115.0,1.2 117.5,0.5 120.0,0.0" fill="none" stroke="#3fb950" stroke-width="1.5"/></svg></td>
+  <td class="dls">
+    <a class="btn" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/GOOGL/GOOGL-m5.zip" title="sha256 13ec34346752">CSV .zip</a>
+    <a class="btn ghost" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/GOOGL/GOOGL-m5-merged.csv.gz" title="merged sha256 90fbe9701b5f">merged .gz</a>
+  </td></tr><tr>
+  <td class="tk">META</td>
+  <td>FACEBOOK INC-A / META<div class="thesis">Llama open models + AI-driven ad ranking.</div></td>
+  <td class="cat">Mega-cap AI platform</td>
+  <td class="num">181,918</td>
+  <td class="rng">2017-03-01<br>→ 2026-06-25</td>
+  <td><svg class="spark" viewBox="0 0 120 30" width="120" height="30" preserveAspectRatio="none"><polyline points="0.0,29.0 2.5,28.4 5.0,27.7 7.5,27.7 10.0,27.3 12.5,27.1 15.0,27.2 17.5,25.9 20.0,27.8 22.5,29.1 25.0,27.5 27.5,27.1 30.0,26.6 32.5,26.5 35.0,26.4 37.5,25.4 40.0,27.8 42.5,24.4 45.0,22.7 47.5,23.4 50.0,23.7 52.5,22.3 55.0,20.0 57.5,18.5 60.0,19.5 62.5,19.6 65.0,26.6 67.5,26.6 70.0,27.9 72.5,29.3 75.0,30.0 77.5,26.9 80.0,24.4 82.5,21.8 85.0,21.2 87.5,20.3 90.0,12.7 92.5,14.5 95.0,12.0 97.5,9.1 100.0,8.7 102.5,1.6 105.0,10.7 107.5,1.7 110.0,0.0 112.5,8.0 115.0,3.7 117.5,3.9 120.0,9.8" fill="none" stroke="#3fb950" stroke-width="1.5"/></svg></td>
+  <td class="dls">
+    <a class="btn" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/META/META-m5.zip" title="sha256 e5bd9733c8fc">CSV .zip</a>
+    <a class="btn ghost" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/META/META-m5-merged.csv.gz" title="merged sha256 c5db28d8028e">merged .gz</a>
+  </td></tr><tr>
+  <td class="tk">MSFT</td>
+  <td>MICROSOFT CORP<div class="thesis">Copilot + Azure OpenAI; largest AI-cloud spender.</div></td>
+  <td class="cat">Mega-cap AI platform</td>
+  <td class="num">181,919</td>
+  <td class="rng">2017-03-01<br>→ 2026-06-25</td>
+  <td><svg class="spark" viewBox="0 0 120 30" width="120" height="30" preserveAspectRatio="none"><polyline points="0.0,30.0 2.5,29.7 5.0,29.4 7.5,29.4 10.0,28.8 12.5,28.2 15.0,28.0 17.5,27.5 20.0,26.8 22.5,27.4 25.0,27.2 27.5,26.2 30.0,25.3 32.5,24.9 35.0,24.5 37.5,23.2 40.0,23.3 42.5,21.4 45.0,19.9 47.5,20.5 50.0,19.9 52.5,18.6 55.0,17.5 57.5,14.8 60.0,13.5 62.5,12.0 65.0,15.6 67.5,16.9 70.0,15.9 72.5,19.0 75.0,18.1 77.5,17.2 80.0,13.5 82.5,11.2 85.0,12.9 87.5,9.5 90.0,6.7 92.5,7.4 95.0,3.7 97.5,4.9 100.0,6.1 102.5,6.8 105.0,8.5 107.5,0.9 110.0,0.0 112.5,2.0 115.0,6.5 117.5,6.5 120.0,10.5" fill="none" stroke="#3fb950" stroke-width="1.5"/></svg></td>
+  <td class="dls">
+    <a class="btn" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/MSFT/MSFT-m5.zip" title="sha256 451cbab6d0c5">CSV .zip</a>
+    <a class="btn ghost" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/MSFT/MSFT-m5-merged.csv.gz" title="merged sha256 64837c3187bf">merged .gz</a>
+  </td></tr><tr>
+  <td class="tk">TSLA</td>
+  <td>TESLA MOTORS INC<div class="thesis">FSD/Dojo autonomy + humanoid robotics AI.</div></td>
+  <td class="cat">Mega-cap AI platform</td>
+  <td class="num">181,933</td>
+  <td class="rng">2017-03-01<br>→ 2026-06-25</td>
+  <td><svg class="spark" viewBox="0 0 120 30" width="120" height="30" preserveAspectRatio="none"><polyline points="0.0,29.8 2.5,29.5 5.0,29.5 7.5,29.4 10.0,29.6 12.5,29.5 15.0,29.7 17.5,29.6 20.0,29.6 22.5,29.5 25.0,29.5 27.5,29.7 30.0,30.0 32.5,30.0 35.0,29.4 37.5,28.3 40.0,28.4 42.5,26.3 45.0,21.3 47.5,20.6 50.0,10.1 52.5,16.0 55.0,16.6 57.5,13.4 60.0,8.8 62.5,2.2 65.0,12.3 67.5,14.5 70.0,8.5 72.5,14.9 75.0,20.7 77.5,16.4 80.0,18.4 82.5,11.1 85.0,12.6 87.5,13.4 90.0,16.6 92.5,18.0 95.0,11.5 97.5,13.5 100.0,5.9 102.5,4.7 105.0,12.0 107.5,9.4 110.0,0.0 112.5,1.6 115.0,1.3 117.5,2.4 120.0,3.5" fill="none" stroke="#3fb950" stroke-width="1.5"/></svg></td>
+  <td class="dls">
+    <a class="btn" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/TSLA/TSLA-m5.zip" title="sha256 030413fdc424">CSV .zip</a>
+    <a class="btn ghost" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/TSLA/TSLA-m5-merged.csv.gz" title="merged sha256 d0d8980e4164">merged .gz</a>
+  </td></tr><tr><td colspan="7" style="color:#8b949e;padding-top:14px"><b>Bonus — AI thematic ETF</b></td></tr><tr>
+  <td class="tk">WTAI</td>
+  <td>Wisdomtree Artificial Intelligence And Innovation Fund<div class="thesis">WisdomTree Artificial Intelligence &amp; Innovation ETF.</div></td>
+  <td class="cat">AI thematic ETF (bonus)</td>
+  <td class="num">42,577</td>
+  <td class="rng">2024-10-22<br>→ 2026-06-26</td>
+  <td><svg class="spark" viewBox="0 0 120 30" width="120" height="30" preserveAspectRatio="none"><polyline points="0.0,25.9 2.5,26.0 5.0,24.4 7.5,23.6 10.0,22.6 12.5,24.3 15.0,23.1 17.5,22.7 20.0,23.0 22.5,22.9 25.0,24.8 27.5,27.9 30.0,27.4 32.5,29.2 35.0,30.0 37.5,27.8 40.0,24.9 42.5,25.1 45.0,24.0 47.5,23.8 50.0,22.0 52.5,21.9 55.0,20.5 57.5,20.7 60.0,21.4 62.5,20.4 65.0,18.5 67.5,18.0 70.0,16.3 72.5,15.8 75.0,15.9 77.5,18.7 80.0,18.0 82.5,16.1 85.0,16.4 87.5,14.6 90.0,14.1 92.5,16.2 95.0,16.3 97.5,16.3 100.0,16.9 102.5,16.8 105.0,15.5 107.5,10.5 110.0,6.5 112.5,6.4 115.0,0.0 117.5,1.4 120.0,1.8" fill="none" stroke="#3fb950" stroke-width="1.5"/></svg></td>
+  <td class="dls">
+    <a class="btn" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/WTAI/WTAI-m5.zip" title="sha256 40e1eb25de61">CSV .zip</a>
+    <a class="btn ghost" href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/WTAI/WTAI-m5-merged.csv.gz" title="merged sha256 ae4a6af111fe">merged .gz</a>
+  </td></tr></tbody></table></div>
+
+<h2>What's in the data <small>column dictionary</small></h2>
+<div class="tscroll"><table class="dict" style="min-width:520px"><tbody>
+<tr><td>ts</td><td>Bar open time, UTC (YYYY-MM-DD HH:MM:SS).</td></tr>
+<tr><td>bid_open/high/low/close</td><td>Bid-side OHLC price for the 5-minute bar (split-adjusted).</td></tr>
+<tr><td>ask_open/high/low/close</td><td>Ask-side OHLC price for the 5-minute bar (split-adjusted).</td></tr>
+<tr><td>mid_open/high/low/close</td><td>(bid + ask) / 2, computed per OHLC field.</td></tr>
+<tr><td>bid_volume / ask_volume</td><td>Dukascopy <i>indicative</i> CFD volume per side (relative activity only).</td></tr>
+</tbody></table></div>
+
+<h2>Data &amp; timestamps <small>read this before using the bars</small></h2>
+<div class="callout">
+<b>Each row is one 5-minute bar; the <code>ts</code> column is the bar's OPEN time, in UTC</b> (24-hour clock, no daylight-saving). Because the stamps are UTC, the US regular session lands at <b>13:30–20:00 UTC in summer</b> (09:30–16:00 New York EDT) and <b>14:30–21:00 UTC in winter</b> (09:30–16:00 EST) — the 1-hour seasonal shift is real and visible in the data, and confirms the UTC labelling. Nights, weekends and market holidays are <b>gaps, not missing data</b>. Most US names are regular-session; a few (e.g. <b>PLTR</b>, <b>SNOW</b>) carry some extended-hours bars, and the bonus <b>WTAI</b> ETF trades on a European schedule (~08:00–16:25 UTC). Prices are split-adjusted; volume is indicative.
+<div class="vbadge">✓ 4,250,409 bars validated — every timestamp UTC, 5-minute-aligned, strictly increasing, zero duplicates</div>
+</div>
+
+<h2>Use it with Claude Code <small>paste this to start analyzing the data</small></h2>
+<p class="meta">The dataset ships with a machine-readable <a href="https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/manifest.json">manifest.json</a> indexing every file. Paste the prompt below into a Claude Code (or any AI coding-agent) session — it is self-contained and will discover, download, verify and start using the data on its own.</p>
+<pre class="recipe">You are analyzing a public dataset: 5-minute OHLCV bars (bid, ask, and a computed mid)
+for 28 AI-related US stock CFDs (plus the WTAI AI ETF), sourced from Dukascopy.
+
+MACHINE-READABLE INDEX — start here (lists every instrument, date range, bar count, SHA-256, URLs):
+  https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/manifest.json
+
+Per stock there is a .zip (merged + bid-only + ask-only CSV) and a merged .gz.
+Download everything at once:  https://terryli-dukascopy-ai-stocks.s3.us-west-2.amazonaws.com/v1/ai-stocks-m5-all.zip
+
+MERGED CSV COLUMNS:
+  ts                       bar OPEN time, UTC, "YYYY-MM-DD HH:MM:SS", 5-minute bars
+  bid_open/high/low/close  bid-side OHLC (split-adjusted)
+  bid_volume               indicative CFD volume
+  ask_open/high/low/close  ask-side OHLC (split-adjusted)
+  ask_volume               indicative CFD volume
+  mid_open/high/low/close  (bid + ask) / 2, per field
+
+IMPORTANT SEMANTICS:
+  - Dukascopy CFD quotes (bid/ask), NOT exchange trades; volume is indicative only.
+  - Timestamps are UTC. US regular session = 13:30-20:00 UTC (summer) / 14:30-21:00 UTC (winter).
+  - Gaps (nights, weekends, holidays) are market-closed, not missing data.
+  - Verify each download against the SHA-256 in manifest.json.
+
+DO THIS:
+  1. Fetch manifest.json and print each stock with its date range and bar count.
+  2. Download NVDA's merged CSV, load it, and chart mid_close over time.
+  3. &lt;replace with your question — e.g. "average bid-ask spread per stock in 2026"&gt;</pre>
+
+<div class="callout warn">
+<b>Read me — honest caveats.</b> This is <b>Dukascopy CFD quote data</b>, not the official consolidated exchange tape. There are <b>no trade prints</b> (hence bid/ask), prices are <b>split-adjusted</b> (corporate splits back-applied for a continuous series), volume is <b>indicative only</b>, all timestamps are <b>UTC</b> (see <i>Data &amp; timestamps</i> above for session windows), and history depth varies by listing (mega-caps from ~2017; newer names later). The ranking figures are analyst-curated approximations for ordering only — not exact financials, not investment advice. A <span class="stale">⚠ feed ended</span> tag marks instruments whose Dukascopy CFD was discontinued before the dataset's latest date (e.g. ANET, after its Dec-2024 4-for-1 split) — their history is complete up to that date.
+</div>
+
+<footer>
+Source: Dukascopy stock-CFD price feed (freeserv chart API) · Bun/TypeScript pipeline · m5 (5-minute OHLCV).
+Integrity: every file's SHA-256 is in CHECKSUMS.txt and manifest.json. Not investment advice. Figures are illustrative orderings, not exact financials.
+</footer>
+</div></body></html>

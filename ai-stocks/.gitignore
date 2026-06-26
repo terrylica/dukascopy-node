@@ -1,0 +1,23 @@
+# Heavy generated data — published via public S3, not git
+raw/
+build/
+download/
+
+# Dependencies & build artifacts
+node_modules/
+jforex-dl/target/
+
+# Caches
+.dukascopy-cache*/
+drip-cache/
+
+# Secrets — never commit credentials
+*creds*.env
+jforex-dl/creds.env
+
+# Transient (screenshots, logs, generated work-lists)
+*.png
+*.log
+*.output
+instruments.tsv
+site/*.png
